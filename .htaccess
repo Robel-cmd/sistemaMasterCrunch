@@ -6,6 +6,9 @@ Options -Indexes
 
 RewriteEngine On
 
+# Permitir específicamente backEnd/index.php
+RewriteRule ^backEnd/index\.php$ - [L]
+
 RewriteRule ^backEnd(/.*)?$ - [F,L]
 RewriteRule ^frontEnd(/.*)?$ - [F,L]
 
