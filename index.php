@@ -324,7 +324,7 @@
 </div>
 
 <script>
-    const API_BASE = 'http://localhost/sistemaMasterCrunch/backEnd/index.php';
+    const API_BASE = 'http://localhost/sistemaMasterCrunch/backEnd/api/meta.php';
 
     // ---- Cargar categorías y productos al inicio ----
     document.addEventListener('DOMContentLoaded', async () => {

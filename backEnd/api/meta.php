@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-require_once __DIR__ . '/meta/ProductoController.php';
-require_once __DIR__ . '/meta/CategoriaController.php';
+require_once __DIR__ . '/../meta/ProductoController.php';
+require_once __DIR__ . '/../meta/CategoriaController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
