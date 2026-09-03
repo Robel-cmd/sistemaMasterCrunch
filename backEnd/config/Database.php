@@ -3,8 +3,8 @@
 class Database {
     private $host = "localhost";
     private $db_name = "master_crunch_db";
-    private $username = "root";
-    private $password = "";
+    private $username = "master";
+    private $password = "1234";
     public $conn;
 
     public function getConnection() {
