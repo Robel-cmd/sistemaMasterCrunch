@@ -47,7 +47,7 @@
                 <div class="btn btn-disable">Desactivar</div>
             </div>
         </div>
-        <div class="categoria">
+        <!-- <div class="categoria">
             <div class="image-wrapper">
                 <div class="image-category">
                     <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Categoría 2">
@@ -151,7 +151,7 @@
                 <div class="btn btn-edit">Editar</div>
                 <div class="btn btn-disable">Desactivar</div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- aun no se como hacer la tabla de catalogos de productos XD-->
@@ -182,22 +182,29 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Código</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
+                        <!-- <th>Descripción</th> -->
                         <th>Precio</th>
+                        <th>Categoria</th>
+                        <th>Disponible</th>
+                        <th>Extra</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
+                        <td>PRO-00001</td>
                         <td class="product-name-cell">
                                 <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
                         </td>
                         <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
                         <td class="product-price-cell">$0.00</td>
+                        <td>Frijoles</td>
+                        <td>SI</td>
+                        <td>NO</td>
                         <td>
                             <div class="table-actions">
                                 <div class="btn btn-edit">Editar</div>
@@ -206,140 +213,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="product-name-cell">
-                                <img src="../assets/D529F506-94B2-4DC5-9B45-DCE2DC2709DE.jpeg" alt="Producto">
-                        </td>
-                        <td>Producto 1</td>
-                        <td>Descripción breve del producto 1</td>
-                        <td class="product-price-cell">$0.00</td>
-                        <td>
-                            <div class="table-actions">
-                                <div class="btn btn-edit">Editar</div>
-                                <div class="btn btn-disable">Desactivar</div>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>

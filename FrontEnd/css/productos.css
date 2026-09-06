@@ -198,7 +198,7 @@ body.dark-mode {
     padding: 6px 12px;
     gap: 8px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
+    width: 270px;
 }
 
 .search-general:focus-within {
@@ -318,6 +318,7 @@ th{
 tbody tr{
     background-color: var(--card-background-color);
     border-bottom: 0.50px solid var(--table-border-cell);
+    text-align: center;
 }
 tbody tr:hover{
     background-color: var(--table-cell-secondary);
