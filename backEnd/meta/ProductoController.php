@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/Producto.php';
-require_once __DIR__ . '/Categoria.php'; 
+require_once __DIR__ . '/Categoria.php';
 
 class ProductoController {
     private $db;
@@ -12,14 +12,13 @@ class ProductoController {
         $database = new Database();
         $this->db = $database->getConnection();
         $this->producto = new Producto($this->db);
-        // Ruta absoluta a la carpeta uploads (raíz del proyecto)
-        $this->upload_dir = __DIR__ . '/../../uploads/';
+        // Ruta a la carpeta uploads/productos 
+        $this->upload_dir = __DIR__ . '/../../uploads/productos/';
         if (!is_dir($this->upload_dir)) {
             mkdir($this->upload_dir, 0777, true);
         }
     }
 
-    // Obtener datos de entrada (JSON o multipart) y procesar imagen
     private function getInputData() {
         $contentType = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '';
         if (strpos($contentType, 'multipart/form-data') !== false) {
@@ -27,10 +26,10 @@ class ProductoController {
             if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                 $file = $_FILES['imagen'];
                 $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $nombreUnico = uniqid('pollo_') . '.' . $extension;
+                $nombreUnico = uniqid('prod_') . '.' . $extension;
                 $destino = $this->upload_dir . $nombreUnico;
                 if (move_uploaded_file($file['tmp_name'], $destino)) {
-                    $data['url_imagen'] = 'uploads/' . $nombreUnico;
+                    $data['url_imagen'] = 'uploads/productos/' . $nombreUnico;
                 } else {
                     http_response_code(500);
                     echo json_encode(["message" => "Error al guardar la imagen."]);
@@ -44,7 +43,6 @@ class ProductoController {
         }
     }
 
-    // Crear producto (POST)
     public function create() {
         $data = $this->getInputData();
         if (empty($data['codigo_interno']) || empty($data['nombre']) ||
@@ -71,9 +69,6 @@ class ProductoController {
         }
     }
 
-    // Leer todos (GET)
-    // backEnd/meta/ProductoController.php
-
     public function read() {
         $stmt = $this->producto->read();
         $num = $stmt->rowCount();
@@ -87,7 +82,7 @@ class ProductoController {
                     "nombre"           => $nombre,
                     "precio"           => $precio,
                     "id_categoria"     => $id_categoria,
-                    "categoria_nombre" => $categoria_nombre, // ← NUEVO
+                    "categoria_nombre" => $categoria_nombre,
                     "url_imagen"       => $url_imagen,
                     "disponibilidad"   => $disponibilidad,
                     "es_extra"         => $es_extra,
@@ -102,8 +97,7 @@ class ProductoController {
         }
     }
 
-        // Leer uno (GET con ?id)
-        public function readOne() {
+    public function readOne() {
         $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         if ($id <= 0) {
             http_response_code(400);
@@ -120,59 +114,46 @@ class ProductoController {
         }
     }
 
-    // En ProductoController.php, el método update permanece igual,
-// pero getInputData() ya funciona porque ahora es POST.
-// Sin embargo, debemos asegurarnos de que el id se obtenga bien.
-// Modificar update() para conservar la imagen si no se sube nueva
-    // backEnd/meta/ProductoController.php
+    public function update() {
+        $data = $this->getInputData();
+        $id = isset($data['id_producto']) ? $data['id_producto'] : (isset($_GET['id']) ? $_GET['id'] : null);
+        if (empty($id)) {
+            http_response_code(400);
+            echo json_encode(["message" => "ID de producto no proporcionado."]);
+            return;
+        }
 
-public function update() {
-    $data = $this->getInputData();
+        $current = $this->producto->readOne($id);
+        if (!$current) {
+            http_response_code(404);
+            echo json_encode(["message" => "Producto no encontrado."]);
+            return;
+        }
 
-    // Obtener ID desde data o desde GET
-    $id = isset($data['id_producto']) ? $data['id_producto'] : (isset($_GET['id']) ? $_GET['id'] : null);
-    if (empty($id)) {
-        http_response_code(400);
-        echo json_encode(["message" => "ID de producto no proporcionado."]);
-        return;
+        $this->producto->id_producto = $id;
+        $this->producto->codigo_interno = isset($data['codigo_interno']) ? $data['codigo_interno'] : $current['codigo_interno'];
+        $this->producto->nombre = isset($data['nombre']) ? $data['nombre'] : $current['nombre'];
+        $this->producto->precio = isset($data['precio']) ? $data['precio'] : $current['precio'];
+        $this->producto->id_categoria = isset($data['id_categoria']) ? $data['id_categoria'] : $current['id_categoria'];
+
+        if (isset($data['url_imagen']) && !empty($data['url_imagen'])) {
+            $this->producto->url_imagen = $data['url_imagen'];
+        } else {
+            $this->producto->url_imagen = $current['url_imagen'];
+        }
+
+        $this->producto->disponibilidad = isset($data['disponibilidad']) ? $data['disponibilidad'] : $current['disponibilidad'];
+        $this->producto->es_extra = isset($data['es_extra']) ? $data['es_extra'] : $current['es_extra'];
+
+        if ($this->producto->update()) {
+            http_response_code(200);
+            echo json_encode(["message" => "Producto actualizado exitosamente."]);
+        } else {
+            http_response_code(503);
+            echo json_encode(["message" => "No se pudo actualizar el producto."]);
+        }
     }
 
-    // Obtener el producto actual para saber la imagen existente
-    $current = $this->producto->readOne($id);
-    if (!$current) {
-        http_response_code(404);
-        echo json_encode(["message" => "Producto no encontrado."]);
-        return;
-    }
-
-    // Asignar las propiedades al objeto producto
-    $this->producto->id_producto = $id;
-    $this->producto->codigo_interno = isset($data['codigo_interno']) ? $data['codigo_interno'] : $current['codigo_interno'];
-    $this->producto->nombre = isset($data['nombre']) ? $data['nombre'] : $current['nombre'];
-    $this->producto->precio = isset($data['precio']) ? $data['precio'] : $current['precio'];
-    $this->producto->id_categoria = isset($data['id_categoria']) ? $data['id_categoria'] : $current['id_categoria'];
-
-    // Manejo de imagen: si se subió nueva, se usa; si no, se conserva la actual
-    if (isset($data['url_imagen']) && !empty($data['url_imagen'])) {
-        $this->producto->url_imagen = $data['url_imagen'];
-    } else {
-        $this->producto->url_imagen = $current['url_imagen']; // mantiene la existente
-    }
-
-    $this->producto->disponibilidad = isset($data['disponibilidad']) ? $data['disponibilidad'] : $current['disponibilidad'];
-    $this->producto->es_extra = isset($data['es_extra']) ? $data['es_extra'] : $current['es_extra'];
-
-    // Ejecutar actualización (sin parámetros)
-    if ($this->producto->update()) {
-        http_response_code(200);
-        echo json_encode(["message" => "Producto actualizado exitosamente."]);
-    } else {
-        http_response_code(503);
-        echo json_encode(["message" => "No se pudo actualizar el producto."]);
-    }
-}
-
-    // Eliminar (DELETE)
     public function delete() {
         $data = $this->getInputData();
         $id = isset($data['id_producto']) ? $data['id_producto'] : null;
@@ -190,7 +171,7 @@ public function update() {
             echo json_encode(["message" => "No se pudo eliminar el producto."]);
         }
     }
-    // GET – Obtener lista de categorías activas
+
     public function getCategorias() {
         $categoria = new Categoria($this->db);
         $stmt = $categoria->read();
@@ -207,6 +188,5 @@ public function update() {
             echo json_encode(["message" => "No hay categorías activas."]);
         }
     }
-
 }
 ?>

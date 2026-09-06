@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 require_once __DIR__ . '/../meta/ProductoController.php';
 require_once __DIR__ . '/../meta/CategoriaController.php';
+require_once __DIR__ . '/../meta/ComboController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -33,6 +34,9 @@ switch ($resource) {
         break;
     case 'categoria':
         $controller = new CategoriaController();
+        break;
+    case 'combo':
+        $controller = new ComboController();
         break;
     default:
         http_response_code(400);

@@ -4,7 +4,7 @@ class Producto {
     private $conn;
     private $table_name = "productos";
 
-    // Propiedades que coinciden con la tabla
+    // Propiedades  de la clase
     public $id_producto;
     public $codigo_interno;
     public $nombre;
@@ -13,7 +13,7 @@ class Producto {
     public $url_imagen;
     public $disponibilidad;
     public $es_extra;
-    public $fecha_creacion; // solo lectura
+    public $fecha_creacion; 
 
     public function __construct($db) {
         $this->conn = $db;
@@ -124,8 +124,7 @@ class Producto {
         }
         return false;
     }
-    // backEnd/meta/Producto.php
-// En Producto.php, dentro de la clase:
+
 public function readOne($id) {
     $query = "SELECT p.id_producto, p.codigo_interno, p.nombre, p.precio,
                      p.id_categoria, c.nombre AS categoria_nombre,
