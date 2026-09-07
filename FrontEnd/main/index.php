@@ -129,8 +129,11 @@
     <main id="content-main">
     </main>
     <script src="../js/main.js"></script>
+    <script src="../js/categoriasAPI.js"></script>
+    <script src="../js/productosAPI.js"></script>
     <script src="../js/router.js"></script>
     <script src="../js/charts.js"></script>
+
 </body>
 </html>
 

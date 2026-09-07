@@ -10,6 +10,9 @@ function ajax(url) {
                     initVentasPorEmpleado();
                     initProductosMasVendidos();
                     initVentasPorHora();
+                }else if(url.includes('Productos')){
+                    initCategorias();
+                    initProductos();
                 }
             } else {
                 console.error("Error en la petición AJAX. Estado:", this.status, "URL:", url);

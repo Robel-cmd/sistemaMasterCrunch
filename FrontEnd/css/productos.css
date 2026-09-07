@@ -129,6 +129,9 @@ body.dark-mode {
     opacity: 0.8;
     color: var(--text-color);
 }
+.card-value{
+    font-size: 16px 
+}
 /*botones*/
 .card-actions {
     display: flex;
@@ -293,6 +296,7 @@ body.dark-mode {
 }
 th{
     background-color: var(--table-head);
+    font-weight: 600;
     color: var(--text-color);
     padding: 16px;
     border: none;
@@ -365,4 +369,23 @@ td{
     align-items: center;
     justify-content: center;
     line-height: 1;
+}
+
+
+
+/*Productos*/
+/*Disponibilidad*/
+.row-disponible.Disponible{
+    font-weight: 900;
+    color: var(--positive-color);
+}
+.row-disponible.Agotado{
+    font-weight: 900;
+    color: var(--negative-color);
+}
+.codigo-interno{
+    font-weight: 700;
+}
+.nombre-producto{
+    font-weight: 700;
 }
