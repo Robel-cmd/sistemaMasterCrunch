@@ -231,6 +231,12 @@
             flex-wrap: wrap;
             gap: 15px;
         }
+        img {
+            max-width: 70px;
+            max-height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
         @media (max-width: 700px) {
             .form-grid {
                 grid-template-columns: 1fr;
@@ -254,7 +260,7 @@
     <!-- Formulario CREAR -->
     <div class="form-section">
         <h2>➕ Nueva Categoría</h2>
-        <form id="createForm">
+        <form id="createForm" enctype="multipart/form-data">
             <div class="form-grid">
                 <input type="text" name="nombre" placeholder="Nombre" required>
                 <input type="text" name="descripcion" placeholder="Descripción (opcional)">
@@ -262,6 +268,7 @@
                     <option value="1">✅ Activo</option>
                     <option value="0">❌ Inactivo</option>
                 </select>
+                <input type="file" name="imagen" accept="image/*">
                 <button type="submit" class="btn-primary">➕ Crear Categoría</button>
             </div>
         </form>
@@ -270,7 +277,7 @@
     <!-- Formulario EDITAR (oculto) -->
     <div id="editForm">
         <h2>✏️ Editar Categoría</h2>
-        <form id="updateForm">
+        <form id="updateForm" enctype="multipart/form-data">
             <input type="hidden" name="id_categoria" id="editId">
             <div class="form-grid">
                 <input type="text" name="nombre" id="editNombre" placeholder="Nombre" required>
@@ -279,6 +286,8 @@
                     <option value="1">✅ Activo</option>
                     <option value="0">❌ Inactivo</option>
                 </select>
+                <input type="file" name="imagen" accept="image/*">
+                <small style="grid-column: span 2;">Dejar vacío para conservar la imagen actual</small>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <button type="submit" class="btn-success">💾 Actualizar</button>
                     <button type="button" class="btn-cancel" onclick="cancelEdit()">❌ Cancelar</button>
@@ -300,18 +309,15 @@
     // ---- Cargar listado al inicio ----
     document.addEventListener('DOMContentLoaded', loadCategorias);
 
-    // ---- Crear categoría (fetch) ----
+    // ---- Crear categoría (multipart) ----
     document.getElementById('createForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const formData = new FormData(this);
-        const data = {};
-        formData.forEach((value, key) => { data[key] = value; });
 
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: formData
             });
             const result = await res.json();
             alert(result.message);
@@ -341,15 +347,18 @@
             if (data.length > 0) {
                 let html = `<table>
                     <thead><tr>
-                        <th>ID</th><th>Nombre</th><th>Descripción</th><th>Estado</th><th>Acciones</th>
+                        <th>ID</th><th>Nombre</th><th>Descripción</th>
+                        <th>Imagen</th><th>Estado</th><th>Acciones</th>
                     </tr></thead><tbody>`;
                 data.forEach(c => {
                     const estado = c.activo ? '✅ Activo' : '❌ Inactivo';
                     const badgeClass = c.activo ? 'badge-active' : 'badge-inactive';
+                    const imgHtml = c.imagen ? `<img src="${c.imagen}" alt="imagen">` : '📷';
                     html += `<tr>
                         <td>${c.id_categoria}</td>
                         <td>${c.nombre}</td>
                         <td>${c.descripcion || ''}</td>
+                        <td>${imgHtml}</td>
                         <td><span class="status-badge ${badgeClass}">${estado}</span></td>
                         <td class="actions">
                             <button class="btn-edit" onclick="editCategoria(${c.id_categoria})">✏️ Editar</button>
@@ -367,12 +376,14 @@
         }
     }
 
-    // ---- Eliminar categoría ----
+    // ---- Eliminar categoría (corregido) ----
     async function deleteCategoria(id) {
         if (!confirm('¿Eliminar esta categoría?')) return;
         try {
-            const res = await fetch(`${API_BASE}&id=${id}`, {
-                method: 'DELETE'
+            const res = await fetch(API_BASE, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_categoria: id })
             });
             const result = await res.json();
             alert(result.message);
@@ -407,24 +418,16 @@
         document.getElementById('updateForm').reset();
     }
 
-    // ---- Actualizar categoría ----
+    // ---- Actualizar categoría (multipart) ----
     document.getElementById('updateForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const formData = new FormData(this);
-        const data = {};
-        formData.forEach((value, key) => { data[key] = value; });
-        const id = data.id_categoria;
-        if (!id) {
-            alert('ID no válido');
-            return;
-        }
-        delete data.id_categoria; // lo enviamos en la URL
+        formData.append('_method', 'PUT');
 
         try {
-            const res = await fetch(`${API_BASE}&id=${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                body: formData
             });
             const result = await res.json();
             alert(result.message);

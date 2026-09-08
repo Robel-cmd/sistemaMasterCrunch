@@ -5,18 +5,37 @@ require_once __DIR__ . '/Categoria.php';
 class CategoriaController {
     private $db;
     private $categoria;
+    private $upload_dir;
 
     public function __construct() {
         $database = new Database();
         $this->db = $database->getConnection();
         $this->categoria = new Categoria($this->db);
+        $this->upload_dir = __DIR__ . '/../../uploads/categorias/';
+        if (!is_dir($this->upload_dir)) {
+            mkdir($this->upload_dir, 0777, true);
+        }
     }
 
     // Obtener datos de entrada (JSON o multipart)
     private function getInputData() {
         $contentType = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '';
         if (strpos($contentType, 'multipart/form-data') !== false) {
-            return $_POST;
+            $data = $_POST;
+            if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                $file = $_FILES['imagen'];
+                $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $nombreUnico = uniqid('cat_') . '.' . $extension;
+                $destino = $this->upload_dir . $nombreUnico;
+                if (move_uploaded_file($file['tmp_name'], $destino)) {
+                    $data['imagen'] = 'uploads/categorias/' . $nombreUnico;
+                } else {
+                    http_response_code(500);
+                    echo json_encode(["message" => "Error al guardar la imagen."]);
+                    exit;
+                }
+            }
+            return $data;
         } else {
             $data = json_decode(file_get_contents("php://input"), true);
             return $data ?: [];
@@ -35,6 +54,7 @@ class CategoriaController {
         $this->categoria->nombre = $data['nombre'];
         $this->categoria->descripcion = isset($data['descripcion']) ? $data['descripcion'] : null;
         $this->categoria->activo = isset($data['activo']) ? $data['activo'] : 1;
+        $this->categoria->imagen = isset($data['imagen']) ? $data['imagen'] : null;
 
         if ($this->categoria->create()) {
             http_response_code(201);
@@ -45,7 +65,7 @@ class CategoriaController {
         }
     }
 
-    // READ (todas)// READ (todas) – incluye inactivas si se pide
+    // READ (todas) – incluye inactivas si se pide
     public function read() {
         $incluirInactivas = isset($_GET['incluirInactivas']) && $_GET['incluirInactivas'] == 'true';
         $stmt = $this->categoria->read($incluirInactivas);
@@ -103,6 +123,13 @@ class CategoriaController {
         $this->categoria->descripcion = isset($data['descripcion']) ? $data['descripcion'] : $current['descripcion'];
         $this->categoria->activo = isset($data['activo']) ? $data['activo'] : $current['activo'];
 
+        // Manejo de imagen: si se sube nueva, se usa; si no, se conserva la actual
+        if (isset($data['imagen']) && !empty($data['imagen'])) {
+            $this->categoria->imagen = $data['imagen'];
+        } else {
+            $this->categoria->imagen = $current['imagen'];
+        }
+
         if ($this->categoria->update()) {
             http_response_code(200);
             echo json_encode(["message" => "Categoría actualizada exitosamente."]);
@@ -112,7 +139,7 @@ class CategoriaController {
         }
     }
 
-    // DELETE (desactivar o eliminar físicamente)
+    // DELETE (eliminar físicamente)
     public function delete() {
         $data = $this->getInputData();
         $id = isset($data['id_categoria']) ? $data['id_categoria'] : (isset($_GET['id']) ? $_GET['id'] : null);
@@ -132,3 +159,4 @@ class CategoriaController {
         }
     }
 }
+?>

@@ -260,8 +260,8 @@
 <body>
 <div class="container">
     <h1>🍗 MasterCrunch <small>Gestión de productos – Pollo & Sabor</small></h1>
-    <!-- Formulario CREAR -->    <a href="viewCategoria.php" class="btn-back" style="background: #6c8b9f; color: white; padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600;">📂 Gestionar Categorías</a>
-                              <a href="viewCombo.php" class="btn-back" style="background: #6c8b9f; color: white; padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600;">📂 Gestionar Combos</a>
+    <!-- Formulario CREAR -->    <a href="viewCategoria.php" class="btn-back" style="background: #6c8b9f; color: white; padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600;"> Gestionar Categorías</a>
+                              <a href="viewCombo.php" class="btn-back" style="background: #6c8b9f; color: white; padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600;"> Gestionar Combos</a>
 
     <div class="form-section">
         <h2>➕ Nuevo Producto</h2>
