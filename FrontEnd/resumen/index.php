@@ -5,7 +5,7 @@
     <title>Resumen</title>
 </head>
 <body>
-<header>    
+<header class="header-body">
     <h1 class="title-text">Resumen</h1>
     <h4>Resumen de actividades</h4>
 </header>

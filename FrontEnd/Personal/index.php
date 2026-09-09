@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
+    <header class="header-body">
         <h1>Personal</h1>
         <h4>Gestiona y organiza tu información del personal</h4>
     </header>

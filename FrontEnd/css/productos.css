@@ -129,6 +129,14 @@ body.dark-mode {
     opacity: 0.8;
     color: var(--text-color);
 }
+.card-title.Innactivo{
+    font-weight: bold;
+    color: var(--negative-border-color);
+}
+.card-title.Activo{
+    font-weight: bold;
+    color: var(--positive-border-color);
+}
 .card-value{
     font-size: 16px 
 }
@@ -388,4 +396,125 @@ td{
 }
 .nombre-producto{
     font-weight: 700;
+}
+
+/* Diseño del modal */
+.modal{
+    width: 90vw;
+    max-width: 480px;
+    background: white;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    border: none;
+    border-radius: 16px;
+    margin: auto;
+
+    opacity: 0;
+    transform: scale(.5);
+    transition-property: opacity, trnasform, display;
+    transition-duration: .25s;
+    transition-behavior: allow-discrete;
+}
+/* atras del modal */
+.modal::backdrop{
+    background-color: rgba(0, 0, 0, 0.555);
+}
+/* atributo del modal open/close */
+.modal[open]{
+    opacity: 1;
+    transform: scale(1);
+}
+@starting-style{
+    .modal[open]{
+    opacity: 0;
+    transform: scale(.5);
+    }
+}
+.modal-header{
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+.modal-close{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    color: gray;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+.modal-close:hover{
+    background: white;
+}
+.modal-title{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+    padding: 0 2rem;
+    text-align: center;
+}
+.modal-content{
+    padding: 1.5rem;
+}
+.datos-modal-producto{
+    margin-top: 8px;
+    font-weight: 300;
+}
+/*inputs*/
+input[type="text"],
+input[type="number"]{
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]:placeholder{
+  color: #9ca3af;
+}
+input[type="file"]{
+    width: 350px;
+    max-width: 100%;
+    color: var(--text-color);
+    padding: 5px;
+    background: var(--background-color);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+input[type="file"]::file-selector-button{
+    margin-right: 20px;
+    border: none;
+    background: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+input[type=file]::file-selector-button:hover {
+  background: var(--primary-color-btn);
+  color: white;
 }

@@ -40,14 +40,14 @@ body{
 }
 /*header*/
 /* Estilos modernos para el Header del Panel */
-header {
+.header-body {
     display: flex;
     flex-direction: column;
     position: relative;
     margin-bottom: 1.5rem;
 }
 
-header::before {
+.header-body::before {
     content: '';
     position: absolute;
     left: -1rem;
@@ -56,12 +56,11 @@ header::before {
     width: 0.35rem;
 }
 
-header .title-text {
+.header-body .title-text {
     font-weight: 700;
 
 }
-
-header h4 {
+.header-body h4 {
     font-size: 0.9rem;
     font-weight: 400;
     color: var(--color-text-secondary);

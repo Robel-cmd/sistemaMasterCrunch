@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
+    <header class="header-body">
         <h1>Administración de catalogos</h1>
         <h4>Gestiona y organiza tu catálogo de productos</h4>
     </header>
