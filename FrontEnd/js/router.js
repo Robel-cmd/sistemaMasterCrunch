@@ -14,6 +14,8 @@ function ajax(url) {
                     initCategorias();
                     initProductos();
                     initCombo();
+
+                    cargarModales();
                 }else if(url.includes('Catalogo')){
                     // datos de catalogo
                 }

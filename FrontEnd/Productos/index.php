@@ -35,7 +35,7 @@
     </section>
 
     <!-- productos -->
-    <!-- aun no se como hacer la tabla de catalogos de productos XD-->
+    <!--Where is the doom eternium, in this time. I need it-->
     <section class="container container-secondary">
         <div class="header-card-container">
             <div class="header-left">
@@ -78,6 +78,8 @@
             </table>
         </div>
     </section>
+
+
     <!-- combos -->
     <section class="container container-secondary">
         <div class="header-card-container">
@@ -93,7 +95,7 @@
             </div>
 
 
-            <div class="button-general" id="agregar-combo">
+            <div class="button-general" id="agregar-combos">
                 <a>
                     <i class='bx bx-plus' ></i>
                     <span>Nuevo combo</span>
@@ -102,13 +104,41 @@
         </div>
         <div class="contenedor-categorias" id="contenedor-combos"></div>
     </section>
+<!-- Modal Agregar categoria-->
+ <dialog class="modal" id="modal-categoria">
 
+        <header class="modal-header">
+            <h2 class="modal-title">Agregar nueva categoria</h2>
+            <button class="modal-close" id="btn-close-category">X</button>
+        </header>
+        
+        <section class="modal-content">
+            <div class="datos-modal-producto">
+                <div class="datos-modal-producto">
+                    <span>Imagen</span>
+                    <input type="file" name="" id="">
+                </div>
+                <div class="datos-modal-producto">
+                    <span>Nombre</span>
+                    <input type="text" name="" id="">
+                </div >
+                <div class="datos-modal-producto">
+                    <span>Descripción</span>
+                    <input type="text" name="" id="">
+                </div >
+            </div>
+            <div class="contenido-botones-modal">
+                <button class="emergente-btn" id="btn-cancel-category">Cancelar</button>
+                <button class="confirm-btn">Confirmar producto</button>
+            </div>
+        </section>
+ </dialog>
 <!-- Modal Agregar Producto-->
- <dialog class="modal">
+ <dialog class="modal" id="modal-producto">
 
         <header class="modal-header">
             <h2 class="modal-title">Agregar nuevo producto</h2>
-            <button class="modal-close" id="btn-close">X</button>
+            <button class="modal-close" id="btn-close-product">X</button>
         </header>
         
         <section class="modal-content">
@@ -154,8 +184,70 @@
 
                 </div>
             </div>
+
             <div class="contenido-botones-modal">
-                <button class="emergente-btn">Cancelar</button>
+                <button class="emergente-btn" id="btn-cancel-product">Cancelar</button>
+                <button class="confirm-btn">Confirmar producto</button>
+            </div>
+        </section>
+ </dialog>
+ <!-- Modal Agregar combos -->
+  <dialog class="modal" id="modal-combos">
+
+        <header class="modal-header">
+            <h2 class="modal-title">Agregar nuevo combo</h2>
+            <button class="modal-close" id="btn-close-combos">X</button>
+        </header>
+        
+        <section class="modal-content">
+            <div class="datos-modal-producto">
+                <div class="datos-modal-producto">
+                    <span>Nombre</span>
+                    <input type="text" name="" id="">
+                </div >
+                <div class="datos-modal-producto">
+                    <span>Imagen</span>
+                    <input type="file" name="" id="">
+                </div>
+                <div class="datos-modal-producto">
+                    <span>Descripcion</span>
+                    <input type="text" name="" id="">
+                </div >
+                <div class="datos-modal-producto">
+                    <span>Precio total</span>
+                    <input type="number" name="" id="" disable>
+                </div>
+                <div class="datos-modal-producto">
+                    <fieldset style="padding: 16px; color: gray;">
+                        <legend>Agregar productos al combo</legend>
+                        <div>
+                            <select name="productos" id="">
+                                <option value="">producto 1</option>
+                                <!-- Se cargaran los productos desde la API -->
+                            </select>
+                        </div>
+                        <div>
+                            <span>Cantdad total</span>
+                            <input type="number" name="" id="" disable min=0 max=9999>
+                        </div>
+                        <button class="button-agregar-producto">Agregar producto</button>
+                    </fieldset>
+                    
+                    
+                    <table>
+                        <tr>
+                           <th>Producto</th> 
+                           <th>cantidad</th> 
+                           <th>precio</th>
+                        </tr>
+                        <tbody>
+                            <!-- xd -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="contenido-botones-modal">
+                <button class="emergente-btn" id="btn-cancel-combos">Cancelar</button>
                 <button class="confirm-btn">Confirmar producto</button>
             </div>
         </section>

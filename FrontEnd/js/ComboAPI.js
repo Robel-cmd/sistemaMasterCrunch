@@ -20,12 +20,12 @@ function initCombo() {
                             </div>
                         `;
                     });
-
+                    let urlDefault = (item.url_imagen_combo && item.url_imagen_combo.trim() !== "") ? item.url_imagen_combo : "uploads/default/default-image.jpg";
                     const fila =`
                     <div class="categoria">
                         <div class="image-wrapper">
                             <div class="image-category">
-                                <img src="/sistemamastercrunch/${item.url_imagen_combo}" alt="Categoría 1">
+                                <img src="/sistemamastercrunch/${urlDefault}" alt="Categoría 1">
                             </div>
                         </div>
                         <div class="card-content">

@@ -134,6 +134,7 @@
     <script src="../js/router.js"></script>
     <script src="../js/charts.js"></script>
     <script src="../js/ComboAPI.js"></script>
+    <script src="../js/CargarModal.js"></script>
 </body>
 </html>
 

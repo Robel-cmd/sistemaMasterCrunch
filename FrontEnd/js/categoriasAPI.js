@@ -30,14 +30,14 @@ function initCategorias() {
         contenedor.innerHTML += nuevacategoria;
     }
     //agregar
-    const agregar = document.getElementById('agregar-categoria');
-    if (agregar) {
-        agregar.addEventListener('click', () => {
-            AgregarCategoria();
-        });
-    } else {
-        console.warn("No se encontro el elemento.");
-    }
+    // const agregar = document.getElementById('agregar-categoria');
+    // if (agregar) {
+    //     agregar.addEventListener('click', () => {
+    //         AgregarCategoria();
+    //     });
+    // } else {
+    //     console.warn("No se encontro el elemento.");
+    // }
 
     //botones de cada uno de las tarjetas de catalogos
     const contenedorCategorias = document.querySelector('#contenedor-categorias');
@@ -68,11 +68,12 @@ function initCategorias() {
                 }else{
                     esactivo = "Activo"
                 }
+                let urlDefault = (item.imagen && item.imagen.trim() !== "") ? item.imagen : "uploads/default/default-image.jpg";
                 const nuevacategoria =`
                     <div class="categoria">
                         <div class="image-wrapper">
                             <div class="image-category">
-                                <img src="/sistemamastercrunch/${item.imagen}" alt="Categoría 1">
+                                <img src="/sistemamastercrunch/${urlDefault}" alt="Categoría 1">
                             </div>
                         </div>
                         <div class="card-content">
