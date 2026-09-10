@@ -16,13 +16,18 @@ class Pedido {
     }
     // crear nuevo producto
     public function create(){
-        $query = "INSERT INTO".$this->table_name."SET empleado =: id_empleado, estado =: estado, tipo_pedido =: tipo_pedido, observaciones =: observaciones";
+        $query = "INSERT INTO " . $this->table_name . "
+                      (id_empleado, estado, tipo_pedido, observaciones)
+                      VALUES 
+                      (:id_empleado, :estado, :tipo_pedido, :observaciones)";
         $stmt = $this->conn->prepare($query);
 
+        $this->empleado = htmlspecialchars(strip_tags($this->empleado)); 
         $this->estado = htmlspecialchars(strip_tags($this->estado));
         $this->tipo_pedido = htmlspecialchars(strip_tags($this->tipo_pedido));
         $this->observaciones = htmlspecialchars(strip_tags($this->observaciones));
 
+        $stmt->bindParam(":id_empleado", $this->empleado);
         $stmt->bindParam(":estado", $this->estado);
         $stmt->bindParam(":tipo_pedido", $this->tipo_pedido);
         $stmt->bindParam(":observaciones", $this->observaciones);
@@ -34,7 +39,7 @@ class Pedido {
 
           
     }
-    // Obtener un nuevo producto
+    // Obtener un nuevo Pedido
     public function read() {
         $query = "SELECT id_pedido, fecha_hora_pedido, fecha_hora_entrega, estado, id_empleado, tipo_pedido, observaciones FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
@@ -43,18 +48,22 @@ class Pedido {
         return $stmt;
     }
 
-     // Actualizar un producto existente
+     // Actualizar un pedido existente
     public function update() {
-        $query = "UPDATE " . $this->table_name . " SET estado = :estado, empleado =: empleado tipo_pedido = :tipo_pedido, observaciones = :observaciones WHERE id_pedido = :id_pedido";
+        $query = "UPDATE " . $this->table_name . " SET estado = :estado, id_empleado =:id_empleado ,tipo_pedido = :tipo_pedido, observaciones = :observaciones WHERE id_pedido = :id_pedido";
         $stmt = $this->conn->prepare($query);
 
-        $this->nombre = htmlspecialchars(strip_tags($this->nombre));
-        $this->descripcion = htmlspecialchars(strip_tags($this->descripcion));
+        $this->estado = htmlspecialchars(strip_tags($this->estado));
+        $this->empleado = htmlspecialchars(strip_tags($this->empleado));
+        $this->tipo_pedido = htmlspecialchars(strip_tags($this->tipo_pedido));
+        $this->observaciones = htmlspecialchars(strip_tags($this->observaciones));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
-        $stmt->bindParam(":nombre", $this->nombre);
-        $stmt->bindParam(":descripcion", $this->descripcion);
-        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":estado", $this->estado);
+        $stmt->bindParam(":id_empleado", $this->empleado);
+        $stmt->bindParam(":tipo_pedido", $this->tipo_pedido);
+        $stmt->bindParam(":observaciones", $this->observaciones);
+        $stmt->bindParam(":id_pedido", $this->id);
 
         if ($stmt->execute()) {
             return true;
@@ -65,11 +74,11 @@ class Pedido {
 
       // Eliminar un producto
     public function delete() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $query = "DELETE FROM " . $this->table_name . " WHERE id_pedido = :id_pedido";
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":id_pedido", $this->id);
 
         if ($stmt->execute()) {
             return true;
