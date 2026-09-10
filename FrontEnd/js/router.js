@@ -14,6 +14,8 @@ function ajax(url) {
                     initCategorias();
                     initProductos();
                     initCombo();
+                }else if(url.includes('Catalogo')){
+                    // datos de catalogo
                 }
             } else {
                 console.error("Error en la petición AJAX. Estado:", this.status, "URL:", url);

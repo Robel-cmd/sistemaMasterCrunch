@@ -42,7 +42,6 @@ function initCombo() {
                     </div>`;
                 contenedor.innerHTML+= fila;
                 });
-            
             })
             .catch(error=>{
                 console.error('error',error);

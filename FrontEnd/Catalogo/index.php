@@ -11,7 +11,7 @@
         <h4>Gestiona y organiza tu catálogo de productos</h4>
     </header>
     <section>
-        
+        <!-- PRAJFE-DINTER -->
     </section>
 </body>
 </html>
