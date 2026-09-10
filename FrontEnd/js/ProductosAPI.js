@@ -43,6 +43,7 @@ try {
 
     const contenedorTabla = document.querySelector('#table-content tbody');
     contenedorTabla.innerHTML = "";
+    
     ProductoData.registros.forEach(item=>{
         let disponibilidad = item.disponibilidad == 0 ? 'Agotado' : 'Disponible';
         let extra = item.es_extra==0 ? '❌' : '✅';

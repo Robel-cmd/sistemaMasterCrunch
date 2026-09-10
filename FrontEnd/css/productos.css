@@ -15,10 +15,15 @@
     --primary-color-btn: #ff9307;
     --secondary-color-btn: #ffca3a;
     --btn-color-text: #242424;
+    --btn-third: #56aefb;
+    --btn-third-secondary: #078bff;
     /*table*/
     --table-head: #ffd6b5;;
     --table-cell-secondary: #d4d4d4;
     --table-border-cell: #cecccc;
+
+    /*combos*/
+    --color-texto-precio-combo: #00277c;
 }
 body.dark-mode {
     --primary-color: #FFAE00;
@@ -42,6 +47,8 @@ body.dark-mode {
     --table-head: #3a1d05;;
     --table-cell-secondary: #585858;
     --table-border-cell: #787878;
+    /* Combos */
+    --color-texto-precio-combo: #97b8ff;
 }
 /*contenedor de categorias*/
 .container-secondary {
@@ -131,11 +138,11 @@ body.dark-mode {
 }
 .card-title.Innactivo{
     font-weight: bold;
-    color: var(--negative-border-color);
+    color: #FF8D8D;
 }
 .card-title.Activo{
     font-weight: bold;
-    color: var(--positive-border-color);
+    color: #00C851;
 }
 .card-value{
     font-size: 16px 
@@ -177,7 +184,15 @@ body.dark-mode {
     background-color: var(--negative-color);
     color: var(--background-color);
 }
-
+.btn-ver {
+    background-color: var(--btn-third);
+    color: var(--text-color);
+    border-color: var(--btn-third-secondary);
+}
+.btn-ver:hover {
+    background-color: var(--btn-third-secondary);
+    color: var(--background-color);
+}
 /*Buscador*/
 .header-card-container {
     display: flex;
@@ -417,6 +432,8 @@ td{
 /* atras del modal */
 .modal::backdrop{
     background-color: rgba(0, 0, 0, 0.555);
+    backdrop-filter: blur(6px);
+
 }
 /* atributo del modal open/close */
 .modal[open]{
@@ -473,7 +490,8 @@ td{
 }
 /*inputs*/
 input[type="text"],
-input[type="number"]{
+input[type="number"],
+select{
   background: #ffffff;
   color: #1a1a1a;
   border: 1px solid #e0e0e0;
@@ -486,7 +504,8 @@ input[type="number"]{
 }
 
 input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+select:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
@@ -517,4 +536,68 @@ input[type="file"]::file-selector-button{
 input[type=file]::file-selector-button:hover {
   background: var(--primary-color-btn);
   color: white;
+}
+/* Radio buttons */
+input[type="radio"]{
+    width: auto;
+    margin: 0.4rem;
+    margin-bottom: 16px;
+}
+fieldset{
+    width: auto;
+    margin-bottom: 16px;
+}
+
+/*botones de accion*/
+.contenido-botones-modal{
+    display: inline-flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+.emergente-btn,
+.confirm-btn{
+    width: 100%;
+    padding: 18px 8px;
+    border: none;
+    border-radius: 6px;
+    align-items: center;
+    margin-right: 16px;
+    font-weight: 600;
+    font-size: 0.80rem;
+    cursor: pointer;
+
+    box-shadow: 1px 2px 1px 0.2px rgba(0, 0, 0, 0.081);
+}
+.emergente-btn{
+    background-color: rgb(255, 53, 53);
+    color: white;
+}
+.emergente-btn:hover{
+    background-color: rgb(224, 30, 30);
+    box-shadow: 1.2px 2.2px 1.2px 0.2px rgba(0, 0, 0, 0.181);
+}
+.confirm-btn{
+    background-color: rgb(66, 116, 255);
+    color: white;
+}
+.confirm-btn:hover{
+    background-color: rgb(40, 89, 226);
+    box-shadow: 1.2px 2.2px 1.2px 0.2px rgba(0, 0, 0, 0.181);
+}
+.card-list.detalles{
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+}
+.cant-detalle-combo{
+    justify-content: right;
+}
+.detalle-precio{
+    font-weight: 700;
+    color: var(--color-texto-precio-combo);
+}
+.card-value.precio-combo{
+    color: var(--text-color);
 }

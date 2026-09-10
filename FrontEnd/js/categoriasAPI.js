@@ -62,6 +62,7 @@ function initCategorias() {
             let esactivo = "";
             contenedor.innerHTML = "";
             data.forEach(item => {
+                esactivo = item.es_extra==0 ? 'Innactivo' : 'Activo';
                 if (item.activo==0) {
                     esactivo = "Innactivo"
                 }else{
@@ -85,7 +86,7 @@ function initCategorias() {
                         </div>
                     </div>
                 `;
-                contenedorCategorias.innerHTML += nuevacategoria
+                contenedorCategorias.innerHTML += nuevacategoria;
             });
         })
         .catch(error=>{console.error('error',error)})

@@ -133,7 +133,7 @@
     <script src="../js/productosAPI.js"></script>
     <script src="../js/router.js"></script>
     <script src="../js/charts.js"></script>
-
+    <script src="../js/ComboAPI.js"></script>
 </body>
 </html>
 

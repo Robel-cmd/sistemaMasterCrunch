@@ -30,8 +30,10 @@
                 </a>
             </div>
         </div>
+
     <div class="contenedor-categorias" id="contenedor-categorias"></div>
     </section>
+
     <!-- productos -->
     <!-- aun no se como hacer la tabla de catalogos de productos XD-->
     <section class="container container-secondary">
@@ -98,26 +100,7 @@
                 </a>
             </div>
         </div>
-
-        <div class="table-container" id="table-container">
-            <table class="styled-table" id="table-content">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Código</th>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <!-- <th>Descripción</th> -->
-                        <th>Precio</th>
-                        <th>Categoría</th>
-                        <th>Disponible</th>
-                        <th>Extra</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="body-container-table-combo"></tbody>
-            </table>
-        </div>
+        <div class="contenedor-categorias" id="contenedor-combos"></div>
     </section>
 
 <!-- Modal Agregar Producto-->
@@ -127,7 +110,7 @@
             <h2 class="modal-title">Agregar nuevo producto</h2>
             <button class="modal-close" id="btn-close">X</button>
         </header>
-
+        
         <section class="modal-content">
             <div class="datos-modal-producto">
                 <div>
@@ -153,13 +136,27 @@
                 <div class="datos-modal-producto">
                     <span>Categoria</span>
                     <select name="" id="">
-                        <option value="xd">xd</option>
+                        <!-- AQUI IRAN LOS DATOS DE CATEGORIAS -->
                     </select>
+                </div>
+                <div class="datos-modal-producto">
+                    <fieldset>
+                        <legend>¿Este producto es un extra?</legend>
+                        <div>
+                            <input type="radio" name="extra" value="1">
+                            <label for="extra-si">Si</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="extra" value="0">
+                            <label for="extra-no">No</label>
+                        </div>
+                    </fieldset>
+
                 </div>
             </div>
             <div class="contenido-botones-modal">
-                <button>Cancelar</button>
-                <button>Confirmar producto</button>
+                <button class="emergente-btn">Cancelar</button>
+                <button class="confirm-btn">Confirmar producto</button>
             </div>
         </section>
  </dialog>
