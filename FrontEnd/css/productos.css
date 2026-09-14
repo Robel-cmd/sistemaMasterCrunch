@@ -113,15 +113,41 @@ body.dark-mode {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .image-wrapper {
+    position: relative;
     width: 100%;
     height: 160px;
     background-color: var(--secondary-color);
     overflow: hidden;
 }
-.image-category img{
+.image-category .img-category{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+/* IMAGEN DE INNACTIVO */
+.activo-image,
+.innactivo-image{
+    position: absolute;
+    overflow-x: auto;
+    opacity: 0%;
+    height: 160px;
+    z-index: 10;
+    pointer-events: none;
+    background-color: rgba(3, 3, 3, 0.333);
+    backdrop-filter: blur(3px);
+}
+.activo-image img,
+.innactivo-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.activo-image{
+    opacity: 0;
+}
+.innactivo-image{
+    opacity: 1;
 }
 /*texto de la categoria*/
 .card-content {
@@ -133,17 +159,25 @@ body.dark-mode {
 }
 .card-title {
     font-size: 0.9rem;
-    opacity: 0.8;
-    color: var(--text-color);
 }
-.card-title.Innactivo{
+.card-title.Innactivo,
+.card-title.innactivo,
+.card-title.innactivo,
+body.dark-mode .card-title.innactivo,
+body.dark-mode .card-title.innactivo,
+body.dark-mode .card-title.innactivo {
     font-weight: bold;
-    color: #FF8D8D;
+    color: var(--negative-color) !important;
 }
-.card-title.Activo{
+.card-title.Activo,
+.card-title.activo,
+body.dark-mode .card-title.Activo,
+body.dark-mode .card-title.activo {
     font-weight: bold;
-    color: #00C851;
+    color: var(--positive-color) !important;
 }
+
+
 .card-value{
     font-size: 16px 
 }
@@ -175,13 +209,27 @@ body.dark-mode {
     background-color: var(--primary-color);
     color: var(--background-color);
 }
-.btn-disable {
+.btn-desactivar,
+.btn-disable
+ {
     background-color: var(--negative-background-color);
     color: var(--text-color);
     border-color: var(--negative-border-color);
 }
+.btn-desactivar:hover,
 .btn-disable:hover {
-    background-color: var(--negative-color);
+    background-color: var(--negative-border-color);
+    color: var(--border-color);
+}
+.btn-activar,
+.btn-active {
+    background-color: var(--positive-background-color);
+    color: var(--text-color);
+    border-color: var(--positive-border-color);
+}
+.btn-activar:hover,
+.btn-active:hover {
+    background-color: var(--positive-color);
     color: var(--background-color);
 }
 .btn-ver {
@@ -407,7 +455,7 @@ td{
     color: var(--negative-color);
 }
 .codigo-interno{
-    font-weight: 700;
+    font-weight: 900;
 }
 .nombre-producto{
     font-weight: 700;
@@ -517,7 +565,12 @@ select:focus {
   border-color: var(--btn-third);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
-
+input[type="text"]:disabled,
+input[type="number"]:disabled,
+select:disabled {
+    background-color: rgb(218, 218, 218);
+    border: var(--border-color);
+}
 input[type="text"]::placeholder,
 input[type="number"]:placeholder{
   color: #8b919c;
@@ -612,4 +665,40 @@ fieldset{
 }
 .card-value.precio-combo{
     color: var(--text-color);
+}
+
+/* Notificaciones */
+
+.notification{
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transition: background-color 0s ease-in-out;
+    pointer-events: none;
+
+    opacity: 70%;
+    backdrop-filter: blur(3px);
+}
+.notification.success{
+    background-color: var(--positive-background-color);
+    border: 1px solid var(--positive-color);
+    color: var(--text-color);
+}
+.notification.error{
+    background-color: var(--negative-background-color);
+    border: 1px solid var(--negative-color);
+    color: var(--text-color);
+}
+.notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
 }

@@ -135,6 +135,7 @@
     <script src="../js/charts.js"></script>
     <script src="../js/ComboAPI.js"></script>
     <script src="../js/CargarModal.js"></script>
+    <script src="../js/notifications.js"></script>
 </body>
 </html>
 

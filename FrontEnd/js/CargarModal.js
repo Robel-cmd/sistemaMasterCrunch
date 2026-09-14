@@ -1,3 +1,4 @@
+// Modales de editar, agregar, eliminar
 function cargarModales() {
     function configurarModal(modalSelector,abrirBtnSelector,cerrartnSelector,cancelarBtnSelector) {
         const modal = document.querySelector(modalSelector);
@@ -14,9 +15,10 @@ function cargarModales() {
         if(btnCancelar) btnCancelar.addEventListener('click', closeModal);
     }
     function cargarModales() {
-        configurarModal('#modal-producto','#agregar-producto','#btn-close-product','#btn-cancel-product');
-        configurarModal('#modal-categoria','#agregar-categoria','#btn-close-category','#btn-cancel-category');
-        configurarModal('#modal-combos','#agregar-combos','#btn-close-combos','#btn-cancel-combos');
+        configurarModal('#modal-producto', '#agregar-producto', '#btn-close-product', '#btn-cancel-product');
+        configurarModal('#modal-categoria', '#agregar-categoria', '#btn-close-category', '#btn-cancel-category');
+        configurarModal('#modal-categoria-editar', '#editar-categoria', '#btn-close-category-editar', '#btn-cancel-category-editar');
+        configurarModal('#modal-combos', '#agregar-combos', '#btn-close-combos', '#btn-cancel-combos');
     }
     cargarModales();
 }

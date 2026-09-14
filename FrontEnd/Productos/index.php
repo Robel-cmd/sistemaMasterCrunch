@@ -33,7 +33,6 @@
 
     <div class="contenedor-categorias" id="contenedor-categorias"></div>
     </section>
-
     <!-- productos -->
     <!--Where is the doom eternium, in this time. I need it-->
     <section class="container container-secondary">
@@ -62,7 +61,6 @@
             <table class="styled-table" id="table-content">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Código</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
@@ -78,32 +76,32 @@
             </table>
         </div>
     </section>
-
-
     <!-- combos -->
-    <section class="container container-secondary">
-        <div class="header-card-container">
-            <div class="header-left">
-                <div class="icon-image">
-                    <span class="material-symbols-outlined">lightbulb_2</span>
-                    <span class="titulo">Combos</span>
-                </div>
-                <div class="search-general">
-                    <i class='bx bx-search-alt-2'></i>
-                    <input type="search" placeholder="Buscar combo" id="searchInputProd">
-                </div>
+<section class="container container-secondary">
+    <div class="header-card-container">
+        <div class="header-left">
+            <div class="icon-image">
+                <span class="material-symbols-outlined">lightbulb_2</span>
+                <span class="titulo">Combos</span>
             </div>
-
-
-            <div class="button-general" id="agregar-combos">
-                <a>
-                    <i class='bx bx-plus' ></i>
-                    <span>Nuevo combo</span>
-                </a>
+            <div class="search-general">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="search" placeholder="Buscar combo" id="searchInputProd">
             </div>
         </div>
-        <div class="contenedor-categorias" id="contenedor-combos"></div>
-    </section>
+
+
+        <div class="button-general" id="agregar-combos">
+            <a>
+                <i class='bx bx-plus' ></i>
+                <span>Nuevo combo</span>
+            </a>
+        </div>
+    </div>
+    <div class="contenedor-categorias" id="contenedor-combos"></div>
+</section>
+
+
 <!-- Modal Agregar categoria-->
  <dialog class="modal" id="modal-categoria">
 
@@ -116,23 +114,50 @@
             <div class="datos-modal-producto">
                 <div class="datos-modal-producto">
                     <span>Imagen</span>
-                    <input type="file" name="" id="">
+                    <input type="file" name="" id="url-imagen">
                 </div>
                 <div class="datos-modal-producto">
                     <span>Nombre</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id="nombre-categoria" placeholder="Ingrese el nombre de categoria...">
                 </div >
                 <div class="datos-modal-producto">
                     <span>Descripción</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id="descripcion-categoria" placeholder="Ingrese la descripcion de la categoria...">
                 </div >
             </div>
             <div class="contenido-botones-modal">
                 <button class="emergente-btn" id="btn-cancel-category">Cancelar</button>
-                <button class="confirm-btn">Confirmar producto</button>
+                <button class="confirm-btn" id="btn-POST-category">Confirmar categoria</button>
             </div>
         </section>
  </dialog>
+ <!-- Modal editar categoria-->
+<dialog class="modal" id="modal-categoria-editar">
+    <header class="modal-header">
+        <h2 class="modal-title">Editar categoria</h2>
+        <button class="modal-close" id="btn-close-category-editar">X</button>
+    </header>
+    <section class="modal-content">
+        <div class="datos-modal-producto">
+            <div class="datos-modal-producto">
+                <span>Imagen</span>
+                <input type="file" id="url-imagen-editar">
+            </div>
+            <div class="datos-modal-producto">
+                <span>Nombre</span>
+                <input type="text" id="nombre-categoria-editar" placeholder="Ingrese el nombre de categoria...">
+            </div>
+            <div class="datos-modal-producto">
+                <span>Descripción</span>
+                <input type="text" id="descripcion-categoria-editar" placeholder="Ingrese la descripcion de la categoria...">
+            </div>
+        </div>
+        <div class="contenido-botones-modal">
+            <button class="emergente-btn" id="btn-cancel-category-editar">Cancelar</button>
+            <button class="confirm-btn" id="btn-PUT-category">Confirmar cambios</button>
+        </div>
+    </section>
+</dialog>
 <!-- Modal Agregar Producto-->
  <dialog class="modal" id="modal-producto">
 
@@ -145,27 +170,28 @@
             <div class="datos-modal-producto">
                 <div>
                     <span>Codigo interno</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id="text-codigoInterno" placeholder="Ejemplo: B012004">
                 </div>
                 <div class="datos-modal-producto">
                     <span>Imagen</span>
-                    <input type="file" name="" id="">
+                    <input type="file" name="" id="url-image">
                 </div>
                 <div class="datos-modal-producto">
                     <span>Nombre</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id="text-name" placeholder="Ejemplo: Pollo frito">
                 </div >
                 <div class="datos-modal-producto">
                     <span>Precio</span>
-                    <input type="number" name="" id="">
+                    <input type="number" name="" id="number-price"  placeholder="Ejemplo: 50.99">
                 </div>
                 <div class="datos-modal-producto">
-                    <span>Meta diaria</span>
-                    <input type="number" name="" id="">
+                    <span>Meta Mensual</span>
+                    <input type="number" name="META" id="number-meta"  placeholder="Ejemplo: 500" disabled>
+                    <center><p style="color: red;">No disponible actualmente</p></center>
                 </div>
                 <div class="datos-modal-producto">
                     <span>Categoria</span>
-                    <select name="" id="">
+                    <select name="categoria" id="content-categorias-list">
                         <!-- AQUI IRAN LOS DATOS DE CATEGORIAS -->
                     </select>
                 </div>
@@ -173,7 +199,7 @@
                     <fieldset>
                         <legend>¿Este producto es un extra?</legend>
                         <div>
-                            <input type="radio" name="extra" value="1">
+                            <input type="radio" name="extra" value="1" checked>
                             <label for="extra-si">Si</label>
                         </div>
                         <div>
@@ -187,7 +213,7 @@
 
             <div class="contenido-botones-modal">
                 <button class="emergente-btn" id="btn-cancel-product">Cancelar</button>
-                <button class="confirm-btn">Confirmar producto</button>
+                <button class="confirm-btn" id="btn-POST-producto">Confirmar producto</button>
             </div>
         </section>
  </dialog>
@@ -203,7 +229,7 @@
             <div class="datos-modal-producto">
                 <div class="datos-modal-producto">
                     <span>Nombre</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id=""  placeholder="Ejemplo: Combo familiar">
                 </div >
                 <div class="datos-modal-producto">
                     <span>Imagen</span>
@@ -211,24 +237,24 @@
                 </div>
                 <div class="datos-modal-producto">
                     <span>Descripcion</span>
-                    <input type="text" name="" id="">
+                    <input type="text" name="" id=""  placeholder="Ejemplo: Comidas y bebidas">
                 </div >
                 <div class="datos-modal-producto">
                     <span>Precio total</span>
-                    <input type="number" name="" id="" disable>
+                    <input type="number" name="" id="" min=0  placeholder="Ejemplo: 50.99">
                 </div>
                 <div class="datos-modal-producto">
                     <fieldset style="padding: 16px; color: gray;">
                         <legend>Agregar productos al combo</legend>
                         <div>
-                            <select name="productos" id="">
-                                <option value="">producto 1</option>
+                            <span>Producto</span>
+                            <select name="productos" id="content-list-product">
                                 <!-- Se cargaran los productos desde la API -->
                             </select>
                         </div>
                         <div>
                             <span>Cantdad total</span>
-                            <input type="number" name="" id="" disable min=0 max=9999>
+                            <input type="number" name="" id="" min=1 max=9999  placeholder="Ejemplo: 2">
                         </div>
                         <button class="button-agregar-producto">Agregar producto</button>
                     </fieldset>
@@ -252,5 +278,47 @@
             </div>
         </section>
  </dialog>
+<!-- APARTADO DE MODALES DE ADVERTENCIA -->
+<!-- APARTADO DE MODALES DE ADVERTENCIA -->
+<!-- APARTADO DE MODALES DE ADVERTENCIA -->
+<!-- APARTADO DE MODALES DE ADVERTENCIA -->
+<!--CONFIRMACION-->
+<dialog class="modal-priority" id="success-modal">
+    <header class="check-tittle OK">
+        <div class="conteiner-icon OK">
+            <i class='bx bx-check'></i>
+        </div>
+        
+    </header>
+    <section class="content-priority">
+        <p class="description-priority">
+            ¡Se ha realizado la acción con exito!
+        </p>
+    </section>
+</dialog>
+<!-- ADVERTENCIA-->
+<dialog class="modal-priority" id="warning-modal">
+    <header class="check-tittle warning">
+        <div class="conteiner-icon warning">
+            <i class='bx bx-error'></i>
+        </div>
+    </header>
+    <section class="content-priority">
+        <p class="description-priority">
+            ¿Esta seguro que quiere realizar esta acción?
+        </p>
+        <div>
+            <button class="cancelar-desactivar" id="cancelar-desactivar">No, regresar</button>
+            <button class="confirmar-desactivar" id="confirmar-desactivar">Si, continuar</button>
+            
+        </div>
+    </section>
+</dialog>
+
+
+<!-- Poput -->
+ <div class="notification" id="notificaion-poput">
+    <!-- CONTENIDO -->
+ </div>
 </body>
 </html>
