@@ -253,7 +253,7 @@ body.dark-mode canvas {
 
 /* CHECKS GENERALES DE CONFIRMACION */
 
-#success-modal {
+.success-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -268,7 +268,7 @@ body.dark-mode canvas {
     z-index: 1000;
 }
 
-#success-modal::backdrop {
+.success-modal::backdrop {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
 }
@@ -321,7 +321,7 @@ body.dark-mode canvas {
 
 /* CHECKS GENERALES DE ADVERTENCIA */
 
-#warning-modal {
+.warning-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -336,7 +336,7 @@ body.dark-mode canvas {
     z-index: 1000;
 }
 
-#warning-modal::backdrop {
+.warning-modal::backdrop {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
 }
@@ -361,13 +361,13 @@ body.dark-mode canvas {
     font-size: 36px;
 }
 
-#warning-modal .content-priority {
+.warning-modal .content-priority {
     padding: 24px 20px;
     text-align: center;
     background: #ffffff;
 }
 
-#warning-modal .description-priority {
+.warning-modal .description-priority {
     font-family: inherit;
     font-size: 24px;
     color: #334155;
@@ -376,13 +376,13 @@ body.dark-mode canvas {
     line-height: 1.5;
 }
 
-#warning-modal .content-priority div {
+.warning-modal .content-priority div {
     display: flex;
     gap: 10px;
     justify-content: center;
 }
 
-#warning-modal .content-priority button {
+.warning-modal .content-priority button {
     font-family: inherit;
     font-size: 14px;
     font-weight: 600;
@@ -393,20 +393,20 @@ body.dark-mode canvas {
     transition: background 0.2s;
 }
 
-#warning-modal .content-priority .confirmar-desactivar {
+.warning-modal .content-priority .confirmar-desactivar {
     background: #ef4444;
     color: #ffffff;
 }
 
-#warning-modal .content-priority .confirmar-desactivar:hover {
+.warning-modal .content-priority .confirmar-desactivar:hover {
     background: #dc2626;
 }
 
-#warning-modal .content-priority .cancelar-desactivar:last-child {
+.warning-modal .content-priority .cancelar-desactivar {
     background: #e2e8f0;
     color: #475569;
 }
 
-#warning-modal .content-priority .cancelar-desactivar:last-child:hover {
+.warning-modal .content-priority .cancelar-desactivar:hover {
     background: #cbd5e1;
 }

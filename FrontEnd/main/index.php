@@ -55,6 +55,12 @@
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
+                    <a href="/sistemamastercrunch/FrontEnd/Metas/index.php" class="menu-link">
+                        <i class='bx bx-cart-add' ></i>
+                        <span>Metas</span>
+                    </a>
+                </li>
+                <li class="menu-item menu-item-static">
                     <a href="/sistemamastercrunch/FrontEnd/Catalogo/index.php" class="menu-link">
                         <i class='bx bx-cart-add' ></i>
                         <span>Catalogo</span>

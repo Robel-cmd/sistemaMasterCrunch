@@ -19,6 +19,7 @@ function cargarModales() {
         configurarModal('#modal-categoria', '#agregar-categoria', '#btn-close-category', '#btn-cancel-category');
         configurarModal('#modal-categoria-editar', '#editar-categoria', '#btn-close-category-editar', '#btn-cancel-category-editar');
         configurarModal('#modal-combos', '#agregar-combos', '#btn-close-combos', '#btn-cancel-combos');
+        configurarModal('#modalViewImg', '#categoria-view', '#btn-close-viewImage', '#btn-cancel-viewImg');
     }
     cargarModales();
 }
