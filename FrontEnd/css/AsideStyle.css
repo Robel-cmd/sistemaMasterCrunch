@@ -4,20 +4,55 @@
     padding : 0;
     user-select: none;
 }
-:root{
+:root {
+    /* --- Layout y Sidebar --- */
     --color-bg: #d2d2d2;
     --color-surface: #fff;
     --color-text-primary: #000000;
     --color-text-secondary: #777474;
     --color-tooltip-bg: #333;
     --color-tooltip-text: #fff;
-    --border-color: #9a9eb2;
+    --border-color: #D3D3D3;
     --shadow-border: rgba(0, 0, 0, 0.1);
     --user-bg-color: #f5f5f5;
     --color-btn-sudebar: #fff;
     --side-btn-i: #686767;
+
+    /* --- Panel, Productos y Resumen --- */
+    --primary-color: #FFAE00;
+    --secondary-color: #FFE9B9;
+    --text-color: #4A4A4A;
+    --background-color: #FFFFFF;
+    --card-background-color: #F6F6F6;
+    
+    /* Estados y alertas */
+    --negative-background-color: #FACDCD;
+    --negative-border-color: #FF8D8D;
+    --positive-background-color: #DFF5E1;
+    --positive-border-color: #00C851;
+    --negative-color: #FF8D8D;
+    --positive-color: #00C851;
+
+    /* Botones generales */
+    --primary-color-btn: #ff9307;
+    --secondary-color-btn: #ffca3a;
+    --btn-color-text: #242424;
+    --btn-third: #56aefb;
+    --btn-third-secondary: #078bff;
+    --btn-third-delete: #fb5656a2;
+    --btn-third-secondary-delete: #ff0707b4;
+
+    /* Tablas*/
+    --table-head: #fdeed4;
+    --table-cell-secondary: #eaeaea;
+    --table-border-cell: #e0e0e0;
+
+    /* Combos y precios */
+    --color-texto-precio-combo: #00277c;
 }
-body.dark-mode{
+
+body.dark-mode {
+    /* --- Layout y Sidebar (Dark) --- */
     --color-bg: #3a3d4d;
     --color-surface: #12141a;
     --color-text-primary: #FFFFFF;
@@ -29,6 +64,39 @@ body.dark-mode{
     --user-bg-color: #FAFAFC;
     --color-btn-sudebar: #1b1a1a;
     --side-btn-i: #ffffff;
+    --color-icon-dark-mode: #E2E8F0;
+
+    /* --- Panel, Productos y Resumen (Dark) --- */
+    --primary-color: #FFAE00;
+    --secondary-color: #3b3012;
+    --text-color: #E2E8F0;
+    --background-color: #12141a;
+    --card-background-color: #1e222d;
+    
+    /* Estados y alertas (Dark) */
+    --negative-background-color: #4a2020;
+    --negative-border-color: #ff5c5c;
+    --positive-background-color: #133822;
+    --positive-border-color: #00c851;
+    --negative-color: #ff8d8d;
+    --positive-color: #00c851;
+
+    /* Botones generales (Dark) */
+    --primary-color-btn: #7c4302;
+    --secondary-color-btn: #f78e3e;
+    --btn-color-text: #fff;
+    --btn-third: #56aefb46;
+    --btn-third-secondary: #078bff7c;
+    --btn-third-delete: #fb565646;
+    --btn-third-secondary-delete: #ff07077c;
+
+    /* Tablas*/
+    --table-head: #1a1d26;
+    --table-cell-secondary: #262a36;
+    --table-border-cell: #2b2d3b;
+
+    /* Combos y precios (Dark) */
+    --color-texto-precio-combo: #97b8ff;
 }
 /*Body*/
 body{

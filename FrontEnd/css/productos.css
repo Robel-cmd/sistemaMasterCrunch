@@ -1,61 +1,4 @@
-:root {
-    --primary-color: #FFAE00;
-    --secondary-color: #f8ca67;
-    --text-color: #4A4A4A;
-    --background-color: #FFFFFF;
-    --card-background-color: #F6F6F6;
-    --border-color: #D3D3D3;
-    --negative-background-color: #FACDCD;
-    --negative-border-color: #FF8D8D;
-    --positive-background-color: #DFF5E1;
-    --positive-border-color: #00C851;
-    --negative-color: #FF8D8D;
-    --positive-color: #00C851;
-    /*button general*/
-    --primary-color-btn: #ff9307;
-    --secondary-color-btn: #ffca3a;
-    --btn-color-text: #242424;
-    --btn-third: #56aefb;
-    --btn-third-secondary: #078bff;
-    --btn-third-delete: #fb5656a2;
-    --btn-third-secondary-delete: #ff0707b4;
-    /*table*/
-    --table-head: #ffd6b5;;
-    --table-cell-secondary: #d4d4d4;
-    --table-border-cell: #cecccc;
 
-    /*combos*/
-    --color-texto-precio-combo: #00277c;
-}
-body.dark-mode {
-    --primary-color: #FFAE00;
-    --color-icon-dark-mode: #E2E8F0;
-    --secondary-color: #3b3012;
-    --text-color: #E2E8F0;
-    --background-color: #12141a;
-    --card-background-color: #1e222d;
-    --border-color: #2b2d3b;
-    --negative-background-color: #4a2020;
-    --negative-border-color: #ff5c5c;
-    --positive-background-color: #133822;
-    --positive-border-color: #00c851;
-    --negative-color: #ff8d8d;
-    --positive-color: #00c851;
-    /*button general*/
-    --primary-color-btn: #7c4302;
-    --secondary-color-btn: #f78e3e;
-    --btn-color-text: #fff;
-    --btn-third: #56aefb46;
-    --btn-third-secondary: #078bff7c;
-    --btn-third-delete: #fb565646;
-    --btn-third-secondary-delete: #ff07077c;
-    /*table*/
-    --table-head: #3a1d05;;
-    --table-cell-secondary: #585858;
-    --table-border-cell: #787878;
-    /* Combos */
-    --color-texto-precio-combo: #97b8ff;
-}
 /*contenedor de categorias*/
 .container-secondary {
     background-color: var(--background-color);
@@ -267,13 +210,15 @@ body.dark-mode .card-title.activo {
     color: var(--background-color);
 }
 .btn-eliminar-cat,
-.btn-delete-prod{
+.btn-delete-prod,
+.btn-borrar-Combo{
     background-color: var(--btn-third-delete);
     color: var(--text-color);
     border-color: var(--btn-third-secondary-delete);
 }
 .btn-eliminar-cat:hover,
-.btn-delete-prod:hover{
+.btn-delete-prod:hover,
+.btn-borrar-Combo:hover{
     background-color: var(--btn-third-secondary-delete);
     color: var(--background-color);
     border-color: var(--btn-third-delete);

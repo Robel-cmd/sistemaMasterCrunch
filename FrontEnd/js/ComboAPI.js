@@ -55,7 +55,7 @@ function initCombo() {
                     </div>
                     <div class="card-actions">
                         <div class="btn btn-edit button-editar" data-id="${item.id}">Editar</div>
-                        <div class="btn btn-disable button-desactivar" data-id="${item.id}">Desactivar</div>
+                        <div class="btn btn-borrar-Combo" data-id="${item.id}">Eliminar</div>
                     </div>
                 </div>
             `;

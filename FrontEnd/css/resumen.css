@@ -1,36 +1,6 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
-:root{
-    --primary-color: #FFAE00;
-    --secondary-color: #FFE9B9;
-    --text-color: #4A4A4A;
-    --background-color: #FFFFFF;
-    --card-background-color: #F6F6F6;
-    --border-color: #D3D3D3;
-    --negative-background-color: #FACDCD;
-    --negative-border-color: #FF8D8D;
-    --positive-background-color: #DFF5E1;
-    --positive-border-color: #00C851;
-    --negative-color: #FF8D8D;
-    --positive-color: #00C851;
-}
-body.dark-mode {
-    --primary-color: #FFAE00;
-    --color-icon-dark-mode: #E2E8F0;
-    --secondary-color: #3b3012;
-    --text-color: #E2E8F0;
-    --background-color: #12141a;
-    --card-background-color: #1e222d;
-    --border-color: #2b2d3b;
-    --negative-background-color: #4a2020;
-    --negative-border-color: #ff5c5c;
-    --positive-background-color: #133822;
-    --positive-border-color: #00c851;
-    --negative-color: #ff8d8d;
-    --positive-color: #00c851;
-}
 body.dark-mode .title-text,
 body.dark-mode .header-card-container .titulo,
 body.dark-mode .card-title,

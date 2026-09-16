@@ -201,13 +201,18 @@
                 </fieldset>
                 
                 
-                <table>
+                <table class="styled-table">
                     <tr>
                         <th>Producto</th> 
                         <th>cantidad</th> 
                         <th>precio</th>
                     </tr>
                     <tbody>
+                        <tr>
+                            <td>xd</td>
+                            <td>xd</td>
+                            <td>xd</td>
+                        </tr>
                         <!-- xd -->
                     </tbody>
                 </table>
