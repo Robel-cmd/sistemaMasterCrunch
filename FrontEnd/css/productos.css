@@ -185,7 +185,7 @@ body.dark-mode .card-title.activo {
     border-color: var(--btn-third-secondary);
 }
 .btn-desactivar:hover,
-.btn-disable:hover {
+.btn-disable:hover{
     background-color: var(--btn-third-secondary);
     color: var(--background-color);
 }
@@ -195,8 +195,7 @@ body.dark-mode .card-title.activo {
     color: var(--text-color);
     border-color: var(--positive-border-color);
 }
-.btn-activar:hover,
-.btn-active:hover {
+.btn-activar:hover{
     background-color: var(--positive-color);
     color: var(--background-color);
 }
@@ -211,14 +210,20 @@ body.dark-mode .card-title.activo {
 }
 .btn-eliminar-cat,
 .btn-delete-prod,
-.btn-borrar-Combo{
+.btn-borrar-Combo,
+.btn-active,
+.btn-cancelar-fila,
+.btn-cancelar-fila-edit{
     background-color: var(--btn-third-delete);
     color: var(--text-color);
     border-color: var(--btn-third-secondary-delete);
 }
 .btn-eliminar-cat:hover,
 .btn-delete-prod:hover,
-.btn-borrar-Combo:hover{
+.btn-borrar-Combo:hover,
+.btn-active:hover,
+.btn-cancelar-fila:hover,
+.btn-cancelar-fila-edit:hover{
     background-color: var(--btn-third-secondary-delete);
     color: var(--background-color);
     border-color: var(--btn-third-delete);
@@ -446,8 +451,8 @@ td{
 
 /* Diseño del modal */
 .modal{
-    width: 90vw;
-    max-width: 480px;
+    width: 50%;
+    max-width: 640px;
     background: var(--background-color);
     color: var(--text-color);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
@@ -521,6 +526,23 @@ td{
 }
 .modal-content{
     padding: 1.5rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: #747474;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
 .datos-modal-producto{
     margin-top: 8px;
@@ -687,7 +709,20 @@ fieldset{
     transform: translateX(-50%) translateY(0);
     opacity: 0.95;
 }
+center .total-combo{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: auto;
+    padding: 16px 0;
 
+}
+.total-combo{
+    font-weight: 900;
+    color: rgba(223, 116, 3, 0.661);
+    padding: 6px;
+}
 @media (max-width: 768px) {
     .header-card-container {
         flex-direction: column;
@@ -705,5 +740,8 @@ fieldset{
 
     .btn-primary-action {
         width: 100%; 
+    }
+    .modal{
+    width: 90%;
     }
 }

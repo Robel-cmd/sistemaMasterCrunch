@@ -164,19 +164,20 @@
         <div class="datos-modal-producto">
             <div class="datos-modal-producto">
                 <span>Nombre</span>
-                <input type="text" name="" id=""  placeholder="Ejemplo: Combo familiar">
+                <input type="text" name="" id="nombreCombo"  placeholder="Ejemplo: Combo familiar" accept="image/*">
             </div >
             <div class="datos-modal-producto">
                 <span>Imagen</span>
-                <input type="file" name="" id="">
+                <input type="file" name="" id="url-imagen-combo">
             </div>
             <div class="datos-modal-producto">
                 <span>Descripcion</span>
-                <input type="text" name="" id=""  placeholder="Ejemplo: Comidas y bebidas">
+                <input type="text" name="" id="desc-combo"  placeholder="Ejemplo: Comidas y bebidas">
             </div >
             <div class="datos-modal-producto">
                 <span>Precio total</span>
-                <input type="number" name="" id="" min=0  placeholder="Ejemplo: 50.99">
+                <input type="number" name="" id="precio-total-combo" min=0  placeholder="Ejemplo: 50.99">
+                <center><span class="total-combo" id="precio-total-prod">Total: 00.00 Lps</span></center>
             </div>
             <div class="datos-modal-producto">
                 <fieldset style="padding: 16px; color: gray;">
@@ -195,9 +196,9 @@
                     </div>
                     <div>
                         <span>Cantidad total</span>
-                        <input type="number" name="" id="" min=1 max=9999 placeholder="Ejemplo: 2">
+                        <input type="number" name="" id="cant-prod-cmb" min=1 max=9999 placeholder="Ejemplo: 2" value="1">
                     </div>
-                    <button class="confirm-btn">Agregar producto</button>
+                    <button class="confirm-btn" id="meter-datos-prod-cmb">Agregar producto</button>
                 </fieldset>
                 
                 
@@ -205,26 +206,90 @@
                     <tr>
                         <th>Producto</th> 
                         <th>cantidad</th> 
-                        <th>precio</th>
+                        <th>precio unitario</th>
+                        <th>precio total</th>
+                        <th>Acciones</th>
                     </tr>
-                    <tbody>
-                        <tr>
-                            <td>xd</td>
-                            <td>xd</td>
-                            <td>xd</td>
-                        </tr>
-                        <!-- xd -->
+                    <tbody id="content-prod-list">
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="contenido-botones-modal">
             <button class="emergente-btn" id="btn-cancel-combos">Cancelar</button>
-            <button class="confirm-btn">Confirmar producto</button>
+            <button class="confirm-btn" id="AgregarComboNuevo">Confirmar producto</button>
         </div>
     </section>
 </dialog>
+ <!-- Modal editar combos -->
+<dialog class="modal" id="modal-combos-edit">
 
+    <header class="modal-header">
+        <h2 class="modal-title">editar combo</h2>
+        <button class="modal-close" id="btn-close-combos-edit">X</button>
+    </header>
+    
+    <section class="modal-content">
+        <div class="datos-modal-producto">
+            <div class="datos-modal-producto">
+                <span>Nombre</span>
+                <input type="text" name="" id="nombreCombo-edit"  placeholder="Ejemplo: Combo familiar">
+            </div >
+            <div class="datos-modal-producto">
+                <span>Imagen</span>
+                <input type="file" id="url-imagen-combo-edit" accept="image/*">
+            </div>
+            <div class="datos-modal-producto">
+                <span>Descripcion</span>
+                <input type="text" name="" id="desc-combo-edit"  placeholder="Ejemplo: Comidas y bebidas">
+            </div >
+            <div class="datos-modal-producto">
+                <span>Precio total</span>
+                <input type="number" name="" id="precio-total-combo-edit" min=0  placeholder="Ejemplo: 50.99">
+                <center><span class="total-combo" id="precio-total-prod-edit">Total: 00.00 Lps</span></center>
+            </div>
+            <div class="datos-modal-producto">
+                <fieldset style="padding: 16px; color: gray;">
+                    <legend>Agregar productos al combo</legend>
+                    
+                        <div style="margin-bottom: 10px;">
+                            <span>Filtrar producto</span>
+                            <input type="text" id="filtro-productos-modal-edit" placeholder="Escribe para buscar producto..." style="width: 100%; padding: 6px; box-sizing: border-box;">
+                        </div>
+
+                    <div>
+                        <span>Producto</span>
+                        <select name="productos" id="content-list-product-edit">
+                            <!-- Se cargaran los productos desde la API -->
+                        </select>
+                    </div>
+                    <div>
+                        <span>Cantidad total</span>
+                        <input type="number" name="" id="cant-prod-cmb-edit" min=1 max=9999 placeholder="Ejemplo: 2" value="1">
+                    </div>
+                    <button class="confirm-btn" id="meter-datos-prod-cmb-edit">Agregar producto</button>
+                </fieldset>
+                
+                
+                <table class="styled-table">
+                    <tr>
+                        <th>Producto</th> 
+                        <th>cantidad</th> 
+                        <th>precio unitario</th>
+                        <th>precio total</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tbody id="content-prod-list-edit">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="contenido-botones-modal">
+            <button class="emergente-btn" id="btn-cancel-combos-edit">Cancelar</button>
+            <button class="confirm-btn" id="btn-PUT-combos-edit">Confirmar producto</button>
+        </div>
+    </section>
+</dialog>
 
 
 
@@ -241,9 +306,11 @@
         <button class="confirm-btn" id="btn-cancel-viewImg">Regresar</button>
     </div>
 </dialog>
+
 <!-- APARTADO DE MODALES DE ADVERTENCIA -->
 <!-- APARTADO DE MODALES DE ADVERTENCIA -->
 <!-- APARTADO DE MODALES DE ADVERTENCIA -->
+
 <!--CONFIRMACION-->
 <dialog class="modal-priority" id="success-modal">
     <header class="check-tittle OK">
@@ -273,6 +340,42 @@
             <button class="cancelar-desactivar" id="cancelar-desactivar">No, regresar</button>
             <button class="confirmar-desactivar" id="confirmar-desactivar">Si, continuar</button>
             
+        </div>
+    </section>
+</dialog>
+<!-- ADVERTENCIA COMBO-->
+<dialog class="warning-modal" id="warning-modal-desactivar-combo">
+    <header class="check-tittle warning">
+        <div class="conteiner-icon warning">
+            <i class='bx bx-error'></i>
+        </div>
+    </header>
+    <section class="content-priority">
+        <p class="description-priority">
+            ¿Esta seguro que quiere realizar esta acción?
+        </p>
+        <div>
+            <button class="cancelar-desactivar" id="cancelar-desactivar-combo">No, regresar</button>
+            <button class="confirmar-desactivar" id="confirmar-desactivar-combo">Si, continuar</button>
+        </div>
+    </section>
+</dialog>
+
+<!-- Borrar COMBO-->
+<dialog class="warning-modal" id="warning-modal-borrar-combo">
+    <header class="check-tittle warning">
+        <div class="conteiner-icon warning">
+            <i class='bx bx-error'></i>
+        </div>
+    </header>
+    <section class="content-priority">
+        <p class="description-priority">
+            <strong>¿Está seguro que quiere eliminar este combo?</strong><br>
+            Esta acción no podrá revertirse
+        </p>
+        <div>
+            <button class="cancelar-desactivar" id="cancelar-eliminar-combo">No, regresar</button>
+            <button class="confirmar-desactivar" id="confirmar-eliminar-combo">Sí, continuar</button>
         </div>
     </section>
 </dialog>
