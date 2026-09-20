@@ -11,7 +11,7 @@ function initCategorias() {
         contenedor.innerHTML = "";
 
         if (!registros || registros.length === 0) {
-            contenedor.innerHTML = `<div style="text-align: center; width: 100%; padding: 20px;">No se encontraron categorías</div>`;
+            contenedor.innerHTML = `<div style="text-align: center; width: 100%; padding: 20px;" class="noseencontro">No se encontraron categorías</div>`;
             return;
         }
 

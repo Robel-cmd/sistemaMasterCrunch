@@ -723,6 +723,10 @@ center .total-combo{
     color: rgba(223, 116, 3, 0.661);
     padding: 6px;
 }
+.noseencontro,
+.no-results{
+    color: var(--text-color);
+}
 @media (max-width: 768px) {
     .header-card-container {
         flex-direction: column;
