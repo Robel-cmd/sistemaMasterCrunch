@@ -6,6 +6,7 @@ CREATE TABLE `categoria` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT 1,
+  `imagen` varchar(200) NOT NULL,
   PRIMARY KEY (`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -54,7 +55,7 @@ CREATE TABLE `combo_detalle` (
   `id_combo` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT 1,
-  `precio_unitario_original` decimal(10,2) NOT NULL,
+  `precio_individual` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id_combo_detalle`),
   KEY `fk_combodet_combo` (`id_combo`),
   KEY `fk_combodet_producto` (`id_producto`),
@@ -83,6 +84,7 @@ CREATE TABLE `pedidos` (
   `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_hora_pedido` datetime NOT NULL DEFAULT current_timestamp(),
   `fecha_hora_entrega` datetime DEFAULT NULL,
+  `cliente` varchar(100) NOT NULL DEFAULT 'Cliente no especificado',
   `id_empleado` int(11) NOT NULL,
   `estado` varchar(30) NOT NULL DEFAULT 'pendiente',
   `tipo_pedido` varchar(30) NOT NULL,
@@ -94,16 +96,18 @@ CREATE TABLE `pedidos` (
 
 CREATE TABLE `pedidos_detalle` (
   `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pedido` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
+  `id_pedido` int(11) NULL,
+  `id_producto` int(11) NULL,
+  `id_combo` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT 1,
   `precio_unitario` decimal(10,2) NOT NULL,
-  `comentarios` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`),
   KEY `fk_pedidosdet_pedido` (`id_pedido`),
+  KEY `fk_pedidosdet_combo` (`id_combo`),
   KEY `fk_pedidosdet_producto` (`id_producto`),
   CONSTRAINT `fk_pedidosdet_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_pedidosdet_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON UPDATE CASCADE
+  CONSTRAINT `fk_pedidosdet_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_pedidosdet_combo` FOREIGN KEY (`id_combo`) REFERENCES `combo`(`id_combo`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `facturas` (
@@ -154,14 +158,11 @@ CREATE TABLE `metas_diarias` (
 CREATE TABLE `ordenes_cocina` (
   `id_orden_cocina` int(11) NOT NULL AUTO_INCREMENT,
   `id_pedido` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT 1,
   `estado_cocina` varchar(30) NOT NULL DEFAULT 'pendiente',
-  `hora_recibido` datetime DEFAULT NULL,
+  `hora_recibido` datetime NOT NULL DEFAULT current_timestamp(),
   `hora_entrega` datetime DEFAULT NULL,
   PRIMARY KEY (`id_orden_cocina`),
   KEY `fk_ordenescocina_pedido` (`id_pedido`),
-  KEY `fk_ordenescocina_producto` (`id_producto`),
-  CONSTRAINT `fk_ordenescocina_pedido` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_ordenescocina_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON UPDATE CASCADE
+  REFERENCES `productos` (`id_producto`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
