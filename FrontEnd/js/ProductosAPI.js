@@ -289,8 +289,8 @@ function initProductos() {
 
     if (btnConfirmEliminarProd) {
         btnConfirmEliminarProd.addEventListener('click', () => {
-            // 🔧 FIX CRÍTICO: guardar el ID en una variable local
-            // antes de cerrar el modal (evita el race con el evento 'close')
+            //guardar el ID en una variable local
+            // antes de cerrar el modal
             const idAEliminar = idProductoEliminar;
             if (!idAEliminar) return;
 

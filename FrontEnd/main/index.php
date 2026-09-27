@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=lightbulb_2" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../css/catalogo.css">
 </head>
 <body>
     <div class="menu-btn sidebar-btn" id="sidebar-btn">
@@ -56,13 +57,13 @@
                 </li>
                 <li class="menu-item menu-item-static">
                     <a href="/sistemamastercrunch/FrontEnd/Metas/index.php" class="menu-link">
-                        <i class='bx bx-cart-add' ></i>
+                        <i class='bx bx-target-lock'></i>
                         <span>Metas</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
                     <a href="/sistemamastercrunch/FrontEnd/Catalogo/index.php" class="menu-link">
-                        <i class='bx bx-cart-add' ></i>
+                        <i class='bx bx-book-content'></i>
                         <span>Catalogo</span>
                     </a>
                 </li>

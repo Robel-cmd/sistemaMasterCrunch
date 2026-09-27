@@ -14,7 +14,7 @@
     <section class="container">
         <div class="header-card-container">
             <div class="icon-image">
-                <span class="material-symbols-outlined">lightbulb_2</span>
+                <i class='bx bx-data'></i>
                 <span class="titulo">Datos generales</span>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <!--Productividad de los colaboradores-->
             <div class="card-header">
                 <div class="icon-wrapper">
-                    <div class="icon-box"><i class='bx bxs-ev-station' ></i></div>
+                    <div class="icon-box"><i class='bx bx-group'></i></div>
                 </div>
                 <div class="badge negative">
                     <span class="badge-text">-100%</span>
@@ -37,7 +37,7 @@
             <!--Promedio de entrega-->
             <div class="card-header">
                 <div class="icon-wrapper">
-                    <div class="icon-box"><i class='bx bxs-pie-chart' ></i></div>
+                    <div class="icon-box"><i class='bx bx-time-five'></i></div>
                 </div>
                 <div class="badge negative">
                     <span class="badge-text">-100%</span>
@@ -50,7 +50,7 @@
             <!--Promedio de venta-->
             <div class="card-header">
                 <div class="icon-wrapper">
-                    <div class="icon-box"><i class='bx bxl-shopify' ></i></div>
+                    <div class="icon-box"><i class='bx bx-dollar-circle'></i></div>
                 </div>
                 <div class="badge negative">
                     <span class="badge-text">-100%</span>
@@ -63,7 +63,7 @@
             <!--Ventas maximas-->
             <div class="card-header">
                 <div class="icon-wrapper">
-                    <div class="icon-box"><i class='bx bx-bar-chart-alt' ></i></div>
+                    <div class="icon-box"><i class='bx bx-trophy'></i></div>
                 </div>
                 <div class="badge negative">
                     <span class="badge-text">-100%</span>
@@ -95,7 +95,7 @@
         <section class="container" style="margin-top: 0;">
             <div class="header-card-container">
                 <div class="icon-image">
-                    <i class='bx bx-bar-chart-alt'></i>
+                    <i class='bx bx-medal'></i>
                     <span class="titulo">Productos mas vendidos</span>
                 </div>
             </div>
@@ -108,7 +108,7 @@
         <section class="container" style="margin-top: 32;">
             <div class="header-card-container">
                 <div class="icon-image">
-                    <i class='bx bx-bar-chart-alt'></i>
+                    <i class='bx bx-time'></i>
                     <span class="titulo">Ventas por hora</span>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <section class="container" style="margin-top: 0;">
                 <div class="header-card-container">
                     <div class="icon-image">
-                        <i class='bx bx-bar-chart-alt'></i>
+                        <i class='bx bx-pie-chart-alt'></i>
                         <span class="titulo">none</span>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
             <section class="container" style="margin-top: 0;">
                 <div class="header-card-container">
                     <div class="icon-image">
-                        <i class='bx bx-bar-chart-alt'></i>
+                        <i class='bx bx-bar-chart-square'></i>
                         <span class="titulo">none</span>
                     </div>
                 </div>

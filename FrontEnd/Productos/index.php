@@ -8,7 +8,7 @@
     <div class="header-card-container">
         <div class="header-left">
             <div class="icon-image">
-                <span class="material-symbols-outlined">lightbulb_2</span>
+                <i class='bx bx-category-alt'></i>
                 <span class="titulo">Categorias de productos</span>
             </div>
             <div class="search-general">
@@ -32,7 +32,7 @@
     <div class="header-card-container">
         <div class="header-left">
             <div class="icon-image">
-                <span class="material-symbols-outlined">lightbulb_2</span>
+                <i class='bx bx-package'></i>
                 <span class="titulo">Productos</span>
             </div>
             <div class="search-general">
@@ -74,7 +74,7 @@
 <div class="header-card-container">
     <div class="header-left">
         <div class="icon-image">
-            <span class="material-symbols-outlined">lightbulb_2</span>
+            <i class='bx bx-gift'></i>
             <span class="titulo">Combos</span>
         </div>
         <div class="search-general">
