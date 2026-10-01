@@ -1,4 +1,3 @@
-
 /*contenedor de categorias*/
 .container-secondary {
     background-color: var(--background-color);
@@ -377,6 +376,12 @@ th{
     display: flex;
     flex-direction: row;
     gap: 16px;
+}
+.table-actions .btn {
+    flex: 0 0 auto;
+    min-width: 85px;
+    padding: 6px 12px;
+    font-size: 0.78rem;
 }
 tbody tr{
     background-color: var(--card-background-color);

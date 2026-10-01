@@ -87,7 +87,7 @@ function initProductos() {
                              data-extra="${esExtraBool ? '1' : '0'}">
                              Editar
                         </div>
-                        <div class="btn btn-delete-prod btn-eliminar" data-id="${item.id_producto}">Eliminar</div>
+                        <div class="btn btn-delete-prod btn-eliminar btn-borrar" data-id="${item.id_producto}">Eliminar</div>
                     </div>
                 </td>
             `;
