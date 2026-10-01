@@ -1,7 +1,4 @@
-/* =========================================================
-   CATÁLOGO - Estilos específicos del módulo
-   Reutiliza variables globales de AsideStyle.css
-   ========================================================= */
+/*CATÁLOGO*/
 .icon-image i {
     font-size: 1.2rem;
     color: var(--primary-color);
@@ -10,7 +7,7 @@
     justify-content: center;
     line-height: 1;
 }
-/* ---------- Barra de búsqueda global ---------- */
+/* Barra de búsqueda global*/
 .toolbar-catalogo {
     position: sticky;
     top: 0;
@@ -19,7 +16,7 @@
     margin-bottom: 20px;
 }
 
-/* ---------- Carrusel de categorías ---------- */
+/* categorías*/
 .carrusel-categorias {
     display: flex;
     flex-direction: row;
@@ -46,7 +43,7 @@
     background: var(--primary-color);
 }
 
-/* ---------- Tarjetas de categoría ---------- */
+/*Tarjetas de categoría*/
 .categoria-card-catalogo {
     background-color: var(--card-background-color);
     border: 1px solid var(--border-color);
@@ -87,7 +84,7 @@
     line-height: 1.4;
 }
 
-/* ---------- Grid de productos ---------- */
+/*Grid de productos*/
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
@@ -95,7 +92,7 @@
     margin-top: 20px;
 }
 
-/* ---------- Tarjeta de producto ---------- */
+/*Tarjeta de producto*/
 .producto-card {
     background-color: var(--card-background-color);
     border: 1px solid var(--border-color);
@@ -154,7 +151,7 @@
     color: var(--primary-color);
 }
 
-/* ---------- Grid de 2 columnas (Catálogo + Resumen) ---------- */
+/*Grid de 2 columnas*/
 .seccion-media-grid-catalogo {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -163,7 +160,7 @@
     align-items: start;
 }
 
-/* ---------- Panel de resumen de pedido ---------- */
+/*Panel de resumen de pedido*/
 .resumen-pedidos-agregados {
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
@@ -214,7 +211,7 @@
     border-radius: 3px;
 }
 
-/* ---------- Item de pedido ---------- */
+/*Item de pedido*/
 .pedido-item {
     background-color: var(--card-background-color);
     border: 1px solid var(--border-color);
@@ -331,7 +328,7 @@
     opacity: 0.7;
 }
 
-/* ---------- Acciones del pedido ---------- */
+/*Acciones del pedido*/
 .acciones-pedido {
     display: flex;
     gap: 10px;
@@ -374,50 +371,7 @@
     box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* ---------- Tabla inferior ---------- */
-.tabla-contenedor {
-    width: 100%;
-    overflow-x: auto;
-    margin-top: 20px;
-}
-
-.tabla-contenedor .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.tabla-contenedor th {
-    background-color: var(--table-head);
-    color: var(--text-color);
-    padding: 14px 16px;
-    font-weight: 600;
-    text-align: left;
-    border-bottom: 1.2px solid var(--border-color);
-    white-space: nowrap;
-    font-size: 0.85rem;
-}
-
-.tabla-contenedor th input[type="checkbox"] {
-    margin-right: 6px;
-    vertical-align: middle;
-    accent-color: var(--primary-color);
-}
-
-.tabla-contenedor td {
-    padding: 12px 16px;
-    color: var(--text-color);
-    font-size: 0.85rem;
-    border-bottom: 0.5px solid var(--table-border-cell);
-    background-color: var(--card-background-color);
-}
-
-.tabla-contenedor tbody tr:hover td {
-    background-color: var(--table-cell-secondary);
-}
-
-/* ---------- Paginación ---------- */
+/*Paginación*/
 .paginacion {
     display: flex;
     align-items: center;
@@ -457,7 +411,6 @@
     border-radius: 6px;
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
     .seccion-media-grid-catalogo {
         grid-template-columns: 1fr;
@@ -486,5 +439,362 @@
     .tabla-contenedor td {
         padding: 10px 12px;
         font-size: 0.78rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PEDIDOS PENDIENTES */
+
+/* Variable que se actualiza cuando el sidebar cambia de tamaño */
+:root {
+    --sidebar-width: 15rem;
+}
+.sidebar.minimize + main,
+.sidebar.minimize ~ #content-main {
+    --sidebar-width: 4.94rem;
+}
+
+/* Contenedor fijo abajo-izquierda */
+.pedidos-flotante {
+    position: fixed;
+    left: calc(var(--sidebar-width) + 1rem);
+    bottom: 2rem;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    transition: left 0.3s ease;
+}
+
+/*Botón flotante*/
+.pedidos-toggle-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background-color: var(--primary-color-btn);
+    color: var(--btn-color-text);
+    border: none;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.pedidos-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+    background-color: var(--secondary-color-btn);
+}
+
+.pedidos-toggle-btn i {
+    font-size: 1.25rem;
+}
+
+.pedidos-toggle-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--background-color);
+}
+
+.pedidos-toggle-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Ocultar el botón cuando el panel está abierto */
+.pedidos-flotante.abierto .pedidos-toggle-btn {
+    background-color: var(--secondary-color-btn);
+}
+.pedidos-flotante.abierto .pedidos-toggle-btn i::before {
+    content: "\ebaa";
+}
+/*Panel expandible*/
+.pedidos-panel {
+    width: 360px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px);
+
+
+    backdrop-filter: blur(4px);
+    background-color: color-mix(in srgb, var(--background-color) 95%, transparent);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pedidos-flotante.abierto .pedidos-panel {
+    max-height: min(540px, 65vh);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Header del panel */
+.pedidos-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pedidos-panel-header .icon-image {
+    gap: 8px;
+}
+
+.pedidos-panel-header .icon-image i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.pedidos-panel-header .titulo {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.btn-cerrar-panel {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-cerrar-panel:hover {
+    background-color: var(--table-cell-secondary);
+    color: var(--negative-color);
+}
+
+/* Tabs */
+.pedidos-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-pedido {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tab-pedido:hover {
+    color: var(--text-color);
+}
+
+.tab-pedido.active {
+    color: var(--text-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-proceso   { background-color: var(--primary-color); }
+.dot-completado { background-color: var(--positive-color); }
+
+.tab-count {
+    background-color: var(--table-cell-secondary);
+    color: var(--text-color);
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 50px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.tab-pedido.active .tab-count {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Lista scrollable */
+.pedidos-lista {
+    padding: 12px;
+    overflow-y: auto;
+    max-height: min(400px, 50vh);
+}
+
+.pedidos-lista::-webkit-scrollbar {
+    width: 6px;
+}
+.pedidos-lista::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.pedidos-tab-content {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pedidos-tab-content.active {
+    display: flex;
+}
+
+/* Tarjeta de pedido */
+.pedido-flotante-item {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.pedido-flotante-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pedido-flotante-item.completado {
+    border-left-color: var(--positive-color);
+    opacity: 0.85;
+}
+
+.pedido-flotante-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pedido-id {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.pedido-estado {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.pedido-estado.en-proceso {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+}
+
+.pedido-estado.completado {
+    background-color: var(--positive-background-color);
+    color: var(--text-color);
+    border: 1px solid var(--positive-border-color);
+}
+
+.pedido-resumen {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pedido-flotante-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.pedido-hora {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+}
+
+.pedido-hora i {
+    font-size: 0.85rem;
+}
+
+.pedido-total {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .pedidos-flotante {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        align-items: stretch;
+    }
+    .pedidos-panel {
+        width: 100%;
+    }
+    .pedidos-toggle-btn {
+        align-self: flex-start;
     }
 }

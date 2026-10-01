@@ -135,12 +135,21 @@
     </div>
     <main id="content-main">
     </main>
+    <!-- Principales -->
     <script src="../js/main.js"></script>
-    <script src="../js/categoriasAPI.js"></script>
-    <script src="../js/productosAPI.js"></script>
+    <!-- Resumen -->
+     <script src="../js/Resumen/charts.js"></script>
+    <!-- Productos -->
+    <script src="../js/Productos/categoriasAPI.js"></script>
+    <script src="../js/Productos/productosAPI.js"></script>
+    <script src="../js/Productos/ComboAPI.js"></script>
+    <!-- Catalogos -->
+    <script src="../js/Catalogo/categoriasCat.js"></script>
+    <script src="../js/Catalogo/catalogoProdAPI.js"></script>
+    <script src="../js/Catalogo/tooglePanel.js"></script>
+    <!-- Rutas de funcionalidad -->
     <script src="../js/router.js"></script>
-    <script src="../js/charts.js"></script>
-    <script src="../js/ComboAPI.js"></script>
+    <!-- Componentes -->
     <script src="../js/CargarModal.js"></script>
     <script src="../js/notifications.js"></script>
 </body>

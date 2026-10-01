@@ -110,7 +110,14 @@ body.dark-mode canvas {
     align-items: center;
     justify-content: center;
 }
-
+.icon-box i {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+.card-header:nth-child(1) .icon-box i { color: #FFAE00; }
+.card-header:nth-child(2) .icon-box i { color: #56aefb; }
+.card-header:nth-child(3) .icon-box i { color: #00C851; } 
+.card-header:nth-child(4) .icon-box i { color: #ff5c5c; } 
 .icon {
     width: 100%;
     height: 100%;
@@ -380,3 +387,32 @@ body.dark-mode canvas {
 .warning-modal .content-priority .cancelar-desactivar:hover {
     background: #cbd5e1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

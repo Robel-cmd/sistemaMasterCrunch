@@ -17,7 +17,9 @@ function ajax(url) {
                     initNotifications();
                     cargarModales();
                 }else if(url.includes('Catalogo')){
-                    // datos de catalogo
+                    initCategoriasCatalogo();
+                    initCatalogoAPI();
+                    initTooglePanel();
                 }
             } else {
                 console.error("Error en la petición AJAX. Estado:", this.status, "URL:", url);
