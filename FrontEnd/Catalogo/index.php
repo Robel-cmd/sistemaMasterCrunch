@@ -1,9 +1,9 @@
 <header class="header-body">
-    <h1>Administración de catálogos</h1>
-    <h4>Gestiona y organiza tu catálogo de productos</h4>
+    <h1>Catálogos</h1>
+    <h4>Realice ventas, pedidos.</h4>
 </header>
 
-<!-- ============ BARRA DE BÚSQUEDA GLOBAL ============ -->
+<!--BARRA DE BÚSQUEDA GLOBAL-->
 <section class="container-secondary toolbar-catalogo">
     <div class="header-card-container" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
         <div class="header-left">
@@ -26,7 +26,7 @@
 </section>
 
 
-<!-- ============ SECCIÓN DE CATEGORÍAS ============ -->
+<!--SECCIÓN DE CATEGORÍAS-->
 <section class="container-secondary">
     <div class="header-card-container">
         <div class="icon-image">
@@ -51,7 +51,8 @@
 </section>
 
 
-<!-- ============ SECCIÓN CATÁLOGO + RESUMEN ============ -->
+
+<!--SECCIÓN CATÁLOGO + RESUMEN-->
 <div class="seccion-media-grid-catalogo">
 
     <!-- Columna izquierda: Catálogo -->
@@ -181,7 +182,7 @@
         </div>
     </div>
 
-    <!-- Botón flotante (toggle) -->
+    <!-- Botón flotante estatico-->
     <button class="pedidos-toggle-btn" id="pedidos-toggle-btn" aria-label="Ver pedidos">
         <i class='bx bx-receipt'></i>
         <span class="pedidos-toggle-badge">2</span>

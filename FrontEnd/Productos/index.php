@@ -25,7 +25,19 @@
     </div>
 
 <div class="contenedor-categorias" id="contenedor-categorias"></div>
+
+    <div class="paginacion">
+        <button>&lt;</button>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>5</span>
+        <button>&gt;</button>
+    </div>
 </section>
+
+
 <!-- productos -->
 <!--Where is the doom eternium, in this time. I need it-->
 <section class="container container-secondary">
@@ -68,6 +80,15 @@
             <tbody id="body-container-table"></tbody>
         </table>
     </div>
+    <div class="paginacion">
+        <button>&lt;</button>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>5</span>
+        <button>&gt;</button>
+    </div>
 </section>
 <!-- combos -->
 <section class="container container-secondary">
@@ -92,6 +113,17 @@
     </div>
 </div>
 <div class="contenedor-categorias" id="contenedor-combos"></div>
+
+
+    <div class="paginacion">
+        <button>&lt;</button>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>5</span>
+        <button>&gt;</button>
+    </div>
 </section>
 
 
