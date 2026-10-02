@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 require_once __DIR__ . '/../meta/ProductoController.php';
 require_once __DIR__ . '/../meta/CategoriaController.php';
 require_once __DIR__ . '/../meta/ComboController.php';
+require_once __DIR__ . '/../meta/MetaController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -38,6 +39,9 @@ switch ($resource) {
     case 'combo':
         $controller = new ComboController();
         break;
+    case 'meta':
+        $controller = new MetaController();
+        break;
     default:
         http_response_code(400);
         echo json_encode(["message" => "Recurso no soportado."]);
@@ -50,20 +54,35 @@ switch ($method) {
         $controller->create();
         break;
     case 'GET':
-        if (isset($_GET['id']) && !empty($_GET['id'])) {
+        if ($resource == 'meta' && isset($_GET['id_producto']) && isset($_GET['fecha'])) {
+            $controller->readByProductAndDate();
+        } elseif ($resource == 'meta' && isset($_GET['fecha']) && !empty($_GET['fecha'])) {
+            $controller->readByDate();
+        } elseif (isset($_GET['id']) && !empty($_GET['id'])) {
             $controller->readOne();
         } else {
             $controller->read();
         }
         break;
     case 'PUT':
-        $controller->update();
+        // Si es meta y viene 'fecha' sin 'id_meta', es actualización por fecha
+        if ($resource == 'meta' && !isset($_GET['id']) && !isset($_GET['id_meta'])) {
+            $controller->updateByDate();
+        } else {
+            $controller->update();
+        }
         break;
     case 'DELETE':
-        $controller->delete();
+        // Si es meta y viene 'fecha' sin 'id', es eliminación por fecha
+        if ($resource == 'meta' && isset($_GET['fecha']) && !isset($_GET['id'])) {
+            $controller->deleteByDate();
+        } else {
+            $controller->delete();
+        }
         break;
     default:
         http_response_code(405);
         echo json_encode(["message" => "Método no permitido."]);
         break;
 }
+?>
