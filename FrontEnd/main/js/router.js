@@ -18,7 +18,7 @@ function buildUrl(href) {
 
 function ajax(url) {
     if (!url) return;
-
+    if (window.clearAllPolls) window.clearAllPolls();
     const http = new XMLHttpRequest();
 
     http.onreadystatechange = function () {

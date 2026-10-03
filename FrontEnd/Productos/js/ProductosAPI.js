@@ -484,4 +484,5 @@ function initProductos() {
             renderizarTabla(filtrados);
         });
     }
+    window.registerPoll(cargarAPIProducto, 5000);
 }

@@ -834,6 +834,7 @@ function initCombo() {
                 mostrarNotificacion("Error de conexión con el servidor", "error");
             }
         });
+        window.registerPoll(cargarAPICombo, 5000);
     }
 
     cargarAPICombo();

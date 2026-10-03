@@ -189,4 +189,6 @@ function initVentasPorHora(datos = null) {
             }
         }
     });
+
+    // window.registerPoll(() => initVentasPorEmpleado(), 5000);
 }

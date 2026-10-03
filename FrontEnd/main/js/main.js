@@ -145,3 +145,38 @@ darkModeBtn?.addEventListener('click', () => {
     if (document.getElementById('productos_mas_vendidos')) initProductosMasVendidos();
     if (document.getElementById('ventas_por_hora'))       initVentasPorHora();
 });
+
+
+window._pollingTimers = [];
+
+/**
+ * Registra una función para que se ejecute periódicamente.
+ * @param {Function} fn  - Función de refresco
+ * @param {number}   ms  - Intervalo en milisegundos (default 30s)
+ * @returns {number}     - ID del intervalo
+ */
+
+window.registerPoll = function (fn, ms = 5000) {
+    const id = setInterval(() => {
+        // Saltar si la pestaña está oculta (no malgastar recursos)
+        if (document.hidden) return;
+
+        // Saltar si hay un modal abierto (no interrumpir al usuario)
+        if (document.querySelector('dialog[open]')) return;
+
+        // Ejecutar con try/catch por si el endpoint falla
+        try {
+            fn();
+        } catch (err) {
+            console.error('Error en auto-refresh:', err);
+        }
+    }, ms);
+
+    window._pollingTimers.push(id);
+    return id;
+};
+
+window.clearAllPolls = function () {
+    window._pollingTimers.forEach(id => clearInterval(id));
+    window._pollingTimers = [];
+};

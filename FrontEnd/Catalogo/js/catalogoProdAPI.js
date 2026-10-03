@@ -63,6 +63,6 @@ function initCatalogoAPI() {
                 renderizarCatalogo([]);
             });
     }
-
+    window.registerPoll(fetchCategorias, 5000);
     fetchCategorias();
 }

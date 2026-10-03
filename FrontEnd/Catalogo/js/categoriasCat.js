@@ -58,4 +58,5 @@ function initCategoriasCatalogo() {
     }
 
     fetchCategorias();
+    window.registerPoll(fetchCategorias, 5000);
 }

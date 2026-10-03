@@ -425,4 +425,7 @@ function initCategorias() {
             renderizarSelectsCategorias(filtradas);
         });
     }
+
+
+    window.registerPoll(CargarAPICategoria, 5000);
 }

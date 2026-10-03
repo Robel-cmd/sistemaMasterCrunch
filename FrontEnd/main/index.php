@@ -1,8 +1,8 @@
 <?php
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
 $script_path = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
-$pos = strpos($script_path, '/Frontend');
-$base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/Frontend' : '';
+$pos = stripos($script_path, '/FrontEnd');
+$base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/FrontEnd' : '';
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ $base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/Frontend' : '';
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="<?php echo $base_url; ?>/historial/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Historial/index.php" class="menu-link">
                         <i class='bx bx-history' ></i>
                         <span>Historial</span>
                     </a>
@@ -154,10 +154,10 @@ $base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/Frontend' : '';
 
 
     <!-- Resumen -->
-     <script src="<?php echo $base_url; ?>/Resumen/js/charts.js"></script>
+     <script src="<?php echo $base_url; ?>/resumen/js/charts.js"></script>
     <!-- Productos -->
     <script src="<?php echo $base_url; ?>/Productos/js/categoriasAPI.js"></script>
-    <script src="<?php echo $base_url; ?>/Productos/js/productosAPI.js"></script>
+    <script src="<?php echo $base_url; ?>/Productos/js/ProductosAPI.js"></script>
     <script src="<?php echo $base_url; ?>/Productos/js/ComboAPI.js"></script>
     <!-- Catalogos -->
     <script src="<?php echo $base_url; ?>/Catalogo/js/categoriasCat.js"></script>
