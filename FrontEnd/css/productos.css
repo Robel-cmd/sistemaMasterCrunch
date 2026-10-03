@@ -141,8 +141,16 @@ body.dark-mode .card-title.activo {
     font-weight: bold;
     color: var(--positive-color) !important;
 }
-
-
+body.dark-mode .notification.success {
+    background-color: #14532d;
+    border-color: #22c55e;
+    color: #d1fae5;
+}
+body.dark-mode .notification.error {
+    background-color: #7f1d1d;
+    border-color: #ef4444;
+    color: #fee2e2;
+}
 .card-value{
     font-size: 16px 
 }
@@ -680,35 +688,47 @@ fieldset{
 
 /* Notificaciones */
 
-.notification{
-    z-index: 2147483647;
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    padding: 12px 24px;
+.notification {
+    /* Popover API ya aplica position: fixed y top layer automáticamente */
+    border: none;
     border-radius: 8px;
+    padding: 12px 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    z-index: 9999;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    transition: background-color 0s ease-in-out;
-    pointer-events: none;
+    font-weight: 600;
+    text-align: center;
 
-    opacity: 70%;
-    backdrop-filter: blur(3px);
+    min-width: 280px;
+    max-width: 420px;
+
+    /* Posición en pantalla */
+    inset: auto auto 30px 50%;              /* abajo, centrada */
+    margin: 0;
+    transform: translateX(-50%);
 }
-.notification.success{
-    background-color: var(--positive-background-color);
-    border: 1px solid var(--positive-color);
-    color: var(--text-color);
+.notification:popover-open {
+    animation: notifEntrar 0.3s ease-out;
 }
-.notification.error{
-    background-color: var(--negative-background-color);
-    border: 1px solid var(--negative-color);
-    color: var(--text-color);
+@keyframes notifEntrar {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+.notification.success {
+    background-color: #d4f7d9;
+    border: 1px solid #16a34a;
+    color: #0a5c1f;
+}
+
+.notification.error {
+    background-color: #fde0e0;
+    border: 1px solid #dc2626;
+    color: #7a1010;
 }
 .notification.show {
     transform: translateX(-50%) translateY(0);

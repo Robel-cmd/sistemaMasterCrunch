@@ -1,5 +1,5 @@
 <header class="header-body">
-    <h1>Catálogos</h1>
+    <h1>Pedidos</h1>
     <h4>Realice ventas, pedidos.</h4>
 </header>
 

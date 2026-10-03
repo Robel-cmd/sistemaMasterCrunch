@@ -1,3 +1,10 @@
+<?php
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+$script_path = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+$pos = strpos($script_path, '/Frontend');
+$base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/Frontend' : '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administracion</title>
     <!--estilos-->
-    <link rel="stylesheet" href="../css/AsideStyle.css">
-    <link rel="stylesheet" href="../css/resumen.css">
-    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/AsideStyle.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/resumen.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/productos.css">
     <!--Librerias-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=lightbulb_2" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="../css/catalogo.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/catalogo.css">
 </head>
 <body>
     <div class="menu-btn sidebar-btn" id="sidebar-btn">
@@ -29,8 +36,8 @@
                 <i class='bx bx-chevron-left' ></i>
             </div>
             <div class="brand">
-            <img class="brand-light" src="../assets/Logo.png" alt="logo">
-            <img class="brand-dark" src="../assets/Logo.png" alt="logo">
+            <img class="brand-light" src="<?php echo $base_url; ?>/assets/Logo.png" alt="logo">
+            <img class="brand-dark" src="<?php echo $base_url; ?>/assets/Logo.png" alt="logo">
             <span>MasterCrunch</span>
             </div>
         </div>
@@ -44,43 +51,43 @@
             -->
             <ul class="menu">
                 <li class="menu-item menu-item-static active">
-                    <a href="/sistemamastercrunch/FrontEnd/resumen/index.php" class="menu-link" id="resumen">
+                    <a href="<?php echo $base_url; ?>/resumen/index.php" class="menu-link" id="resumen">
                         <i class='bx bx-home'></i>
                         <span>Resumen</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/Productos/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Productos/index.php" class="menu-link">
                         <i class='bx bx-food-menu'></i>
                         <span>Productos</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/Metas/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Metas/index.php" class="menu-link">
                         <i class='bx bx-target-lock'></i>
                         <span>Metas</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/Catalogo/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Catalogo/index.php" class="menu-link">
                         <i class='bx bx-book-content'></i>
-                        <span>Catalogo</span>
+                        <span>Pedido</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/Personal/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Personal/index.php" class="menu-link">
                         <i class='bx bxs-briefcase-alt-2' ></i>
                         <span>Personal</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/Usuarios/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/Usuarios/index.php" class="menu-link">
                         <i class='bx bx-user'></i>
                         <span>Usuarios</span>
                     </a>
                 </li>
                 <li class="menu-item menu-item-static">
-                    <a href="/sistemamastercrunch/FrontEnd/historial/index.php" class="menu-link">
+                    <a href="<?php echo $base_url; ?>/historial/index.php" class="menu-link">
                         <i class='bx bx-history' ></i>
                         <span>Historial</span>
                     </a>
@@ -136,22 +143,27 @@
     <main id="content-main">
     </main>
     <!-- Principales -->
-    <script src="../js/main.js"></script>
-    <!-- Resumen -->
-     <script src="../js/Resumen/charts.js"></script>
-    <!-- Productos -->
-    <script src="../js/Productos/categoriasAPI.js"></script>
-    <script src="../js/Productos/productosAPI.js"></script>
-    <script src="../js/Productos/ComboAPI.js"></script>
-    <!-- Catalogos -->
-    <script src="../js/Catalogo/categoriasCat.js"></script>
-    <script src="../js/Catalogo/catalogoProdAPI.js"></script>
-    <script src="../js/Catalogo/tooglePanel.js"></script>
+    <script src="<?php echo $base_url; ?>/main/js/main.js"></script>
     <!-- Rutas de funcionalidad -->
-    <script src="../js/router.js"></script>
+    <script src="<?php echo $base_url; ?>/main/js/router.js"></script>
     <!-- Componentes -->
-    <script src="../js/CargarModal.js"></script>
-    <script src="../js/notifications.js"></script>
+    <script src="<?php echo $base_url; ?>/main/js/CargarModal.js"></script>
+    <script src="<?php echo $base_url; ?>/main/js/notifications.js"></script>
+
+
+
+
+    <!-- Resumen -->
+     <script src="<?php echo $base_url; ?>/Resumen/js/charts.js"></script>
+    <!-- Productos -->
+    <script src="<?php echo $base_url; ?>/Productos/js/categoriasAPI.js"></script>
+    <script src="<?php echo $base_url; ?>/Productos/js/productosAPI.js"></script>
+    <script src="<?php echo $base_url; ?>/Productos/js/ComboAPI.js"></script>
+    <!-- Catalogos -->
+    <script src="<?php echo $base_url; ?>/Catalogo/js/categoriasCat.js"></script>
+    <script src="<?php echo $base_url; ?>/Catalogo/js/catalogoProdAPI.js"></script>
+    <script src="<?php echo $base_url; ?>/Catalogo/js/tooglePanel.js"></script>
+
 </body>
 </html>
 

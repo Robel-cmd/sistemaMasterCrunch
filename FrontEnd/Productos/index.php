@@ -571,6 +571,4 @@
         </section>
  </dialog>
 <!-- Poput -->
- <div class="notification" id="notificaion-poput">
-    <!-- CONTENIDO -->
- </div>
+<div class="notification" id="notificaion-poput" popover="manual" role="status" aria-live="polite"></div>
