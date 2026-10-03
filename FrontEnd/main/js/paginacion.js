@@ -4,6 +4,25 @@
 // totalItems: cantidad total de elementos (ya filtrados)
 // porPagina: elementos por página
 // onChange(nuevaPagina): callback al cambiar de página
+// Calcula cuántos elementos caben en el contenedor según su ancho real.
+// contenedor: elemento DOM donde se listan los ítems
+// max: máximo de elementos por página
+// anchoItem: ancho aproximado de cada tarjeta (incluye gap)
+function calcularPorPagina(contenedor, max, anchoItem) {
+    const ancho = (contenedor && contenedor.clientWidth > 0)
+        ? contenedor.clientWidth
+        : window.innerWidth;
+
+    // Si ya hay tarjetas renderizadas, usar el ancho real de la primera
+    let anchoReal = anchoItem;
+    const primera = contenedor ? contenedor.firstElementChild : null;
+    if (primera && primera.offsetWidth > 0) {
+        anchoReal = primera.offsetWidth + 20; // + gap
+    }
+
+    return Math.max(1, Math.min(max, Math.floor(ancho / anchoReal)));
+}
+
 function renderPaginacion(container, paginaActual, totalItems, porPagina, onChange) {
     if (!container) return 1;
 

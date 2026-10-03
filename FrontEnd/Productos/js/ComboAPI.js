@@ -15,7 +15,8 @@ let _comboState = {
 let _comboDocReady = false;
 let _paginaComboActual = 1;
 let _combosMostrados   = [];
-const COMBOS_POR_PAGINA = 6;
+const COMBOS_POR_PAGINA = 6; // máximo
+const ANCHO_TARJETA_COMBO = 300;
 
 function initCombo() {
 
@@ -68,12 +69,13 @@ function initCombo() {
         }
 
         _combosMostrados = registros;
+        const porPagina = calcularPorPagina(contenedor, COMBOS_POR_PAGINA, ANCHO_TARJETA_COMBO);
 
-        const totalPaginas = Math.max(1, Math.ceil(registros.length / COMBOS_POR_PAGINA));
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / porPagina));
         if (_paginaComboActual > totalPaginas) _paginaComboActual = totalPaginas;
 
-        const inicio   = (_paginaComboActual - 1) * COMBOS_POR_PAGINA;
-        const visibles = registros.slice(inicio, inicio + COMBOS_POR_PAGINA);
+        const inicio   = (_paginaComboActual - 1) * porPagina;
+        const visibles = registros.slice(inicio, inicio + porPagina);
 
         let htmlAcumulado = "";
 
@@ -133,10 +135,14 @@ function initCombo() {
             document.getElementById('paginacion-combos'),
             _paginaComboActual,
             _combosMostrados.length,
-            COMBOS_POR_PAGINA,
+            porPagina,
             (p) => { _paginaComboActual = p; renderizarCombos(_combosMostrados); }
         );
     }
+
+    window.addEventListener('resize', () => {
+        if (_combosMostrados.length > 0) renderizarCombos(_combosMostrados);
+    });
 
     async function cargarAPICombo() {
         const apiMeta = `${API_BASE}/meta.php?entity=combo`;

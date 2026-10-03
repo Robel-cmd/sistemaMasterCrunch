@@ -6,7 +6,8 @@ let idCategoriaEliminar      = null;
 let _categoriasDocListenersReady = false;
 let _paginaCatActual         = 1;
 let _categoriasMostradas     = [];
-const CATEGORIAS_POR_PAGINA  = 6;
+const CATEGORIAS_POR_PAGINA  = 6; // máximo
+const ANCHO_TARJETA_CAT      = 300; // 280px tarjeta + gap
 
 function initCategorias() {
 
@@ -29,12 +30,13 @@ function initCategorias() {
         }
 
         _categoriasMostradas = registros;
+        const porPagina = calcularPorPagina(contenedor, CATEGORIAS_POR_PAGINA, ANCHO_TARJETA_CAT);
 
-        const totalPaginas = Math.max(1, Math.ceil(registros.length / CATEGORIAS_POR_PAGINA));
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / porPagina));
         if (_paginaCatActual > totalPaginas) _paginaCatActual = totalPaginas;
 
-        const inicio    = (_paginaCatActual - 1) * CATEGORIAS_POR_PAGINA;
-        const visibles  = registros.slice(inicio, inicio + CATEGORIAS_POR_PAGINA);
+        const inicio    = (_paginaCatActual - 1) * porPagina;
+        const visibles  = registros.slice(inicio, inicio + porPagina);
 
         let html = "";
         visibles.forEach(item => {
@@ -72,10 +74,14 @@ function initCategorias() {
             document.getElementById('paginacion-categorias'),
             _paginaCatActual,
             registros.length,
-            CATEGORIAS_POR_PAGINA,
+            porPagina,
             (p) => { _paginaCatActual = p; renderizarCategorias(_categoriasMostradas); }
         );
     }
+
+    window.addEventListener('resize', () => {
+        if (_categoriasMostradas.length > 0) renderizarCategorias(_categoriasMostradas);
+    });
 
     function renderizarSelectsCategorias(registros) {
         const selectAdd  = document.querySelector('#content-categorias-list');

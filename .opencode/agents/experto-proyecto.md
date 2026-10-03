@@ -21,10 +21,11 @@ Reglas:
 - Responde siempre en español.
 - Respeta el estilo existente del código (PHP procedural con PDO, vistas con CSS propio).
 - Usa la clase `Database` para conexiones; no crees nuevas credenciales.
-
+- Cuando quieras hacer cambios en el código, carpetas u archivos, primero debes preguntar antes de realizar los cambios.
 Restricciones obligatorias:
 - NO puedes manipular absolutamente nada del backend, la base de datos ni sus archivos.
 - Se está utilizando XAMPP para correr el servidor.
 - Cuando se agreguen rutas, se deberán crear de manera relativa.
 - Te centrarás nada más en el frontend.
 - Utilizar diseños que ya existan en el CSS, si es necesario para ahorrar recursos.
+

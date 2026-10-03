@@ -5,7 +5,8 @@ function initCategoriasCatalogo() {
 
     let _paginaCatActual = 1;
     let _categoriasMostradas = [];
-    const CATEGORIAS_POR_PAGINA = 6;
+    const CATEGORIAS_POR_PAGINA = 6; // máximo
+    const ANCHO_TARJETA_CAT = 280;   // 260px tarjeta + gap
 
     //tarjetas de categorías
     function renderizarCategorias(registros) {
@@ -26,12 +27,13 @@ function initCategoriasCatalogo() {
         }
 
         _categoriasMostradas = registros;
+        const porPagina = calcularPorPagina(categoriasContainer, CATEGORIAS_POR_PAGINA, ANCHO_TARJETA_CAT);
 
-        const totalPaginas = Math.max(1, Math.ceil(registros.length / CATEGORIAS_POR_PAGINA));
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / porPagina));
         if (_paginaCatActual > totalPaginas) _paginaCatActual = totalPaginas;
 
-        const inicio   = (_paginaCatActual - 1) * CATEGORIAS_POR_PAGINA;
-        const visibles = registros.slice(inicio, inicio + CATEGORIAS_POR_PAGINA);
+        const inicio   = (_paginaCatActual - 1) * porPagina;
+        const visibles = registros.slice(inicio, inicio + porPagina);
 
         let html = '';
 
@@ -59,10 +61,15 @@ function initCategoriasCatalogo() {
             document.getElementById('paginacion-catalogo-categorias'),
             _paginaCatActual,
             _categoriasMostradas.length,
-            CATEGORIAS_POR_PAGINA,
+            porPagina,
             (p) => { _paginaCatActual = p; renderizarCategorias(_categoriasMostradas); }
         );
     }
+
+    // Al cambiar el tamaño de pantalla, recalcular cuántos ítems caben
+    window.addEventListener('resize', () => {
+        if (_categoriasMostradas.length > 0) renderizarCategorias(_categoriasMostradas);
+    });
 
     // Cargar categorías
     function fetchCategorias() {
