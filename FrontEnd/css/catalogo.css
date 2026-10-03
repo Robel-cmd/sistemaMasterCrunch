@@ -422,8 +422,22 @@
     padding: 0 6px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-color);
+    cursor: pointer;
     border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.paginacion span.active {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.paginacion button:disabled {
+    opacity: 0.4;
+    cursor: default;
+    background: var(--background-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 @media (max-width: 1024px) {

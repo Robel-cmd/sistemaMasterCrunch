@@ -146,6 +146,7 @@ $base_url = ($pos !== false) ? substr($script_path, 0, $pos) . '/FrontEnd' : '';
     <script src="<?php echo $base_url; ?>/main/js/main.js"></script>
     <!-- Rutas de funcionalidad -->
     <script src="<?php echo $base_url; ?>/main/js/router.js"></script>
+    <script src="<?php echo $base_url; ?>/main/js/paginacion.js"></script>
     <!-- Componentes -->
     <script src="<?php echo $base_url; ?>/main/js/CargarModal.js"></script>
     <script src="<?php echo $base_url; ?>/main/js/notifications.js"></script>

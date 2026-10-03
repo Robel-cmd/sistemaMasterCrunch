@@ -26,15 +26,7 @@
 
 <div class="contenedor-categorias" id="contenedor-categorias"></div>
 
-    <div class="paginacion">
-        <button>&lt;</button>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>...</span>
-        <span>5</span>
-        <button>&gt;</button>
-    </div>
+    <div class="paginacion" id="paginacion-categorias"></div>
 </section>
 
 
@@ -80,15 +72,7 @@
             <tbody id="body-container-table"></tbody>
         </table>
     </div>
-    <div class="paginacion">
-        <button>&lt;</button>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>...</span>
-        <span>5</span>
-        <button>&gt;</button>
-    </div>
+    <div class="paginacion" id="paginacion-productos"></div>
 </section>
 <!-- combos -->
 <section class="container container-secondary">
@@ -115,15 +99,7 @@
 <div class="contenedor-categorias" id="contenedor-combos"></div>
 
 
-    <div class="paginacion">
-        <button>&lt;</button>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>...</span>
-        <span>5</span>
-        <button>&gt;</button>
-    </div>
+    <div class="paginacion" id="paginacion-combos"></div>
 </section>
 
 

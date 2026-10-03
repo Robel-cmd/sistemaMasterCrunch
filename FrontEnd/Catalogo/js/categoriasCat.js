@@ -3,6 +3,10 @@ function initCategoriasCatalogo() {
     // Ruta dinámica
     const apiUrl = `${window.API_BASE}/meta.php?entity=categoria`;
 
+    let _paginaCatActual = 1;
+    let _categoriasMostradas = [];
+    const CATEGORIAS_POR_PAGINA = 6;
+
     //tarjetas de categorías
     function renderizarCategorias(registros) {
         const categoriasContainer = document.getElementById('categorias-container');
@@ -17,12 +21,21 @@ function initCategoriasCatalogo() {
                     No se encontraron categorías
                 </div>
             `;
+            renderPaginacion(document.getElementById('paginacion-catalogo-categorias'), 1, 0, CATEGORIAS_POR_PAGINA, () => {});
             return;
         }
 
+        _categoriasMostradas = registros;
+
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / CATEGORIAS_POR_PAGINA));
+        if (_paginaCatActual > totalPaginas) _paginaCatActual = totalPaginas;
+
+        const inicio   = (_paginaCatActual - 1) * CATEGORIAS_POR_PAGINA;
+        const visibles = registros.slice(inicio, inicio + CATEGORIAS_POR_PAGINA);
+
         let html = '';
 
-        registros.forEach(item => {
+        visibles.forEach(item => {
             const urlRelativa = (item.imagen && item.imagen.trim() !== '')
                 ? item.imagen
                 : 'uploads/default/default-image.jpg';
@@ -41,6 +54,14 @@ function initCategoriasCatalogo() {
         });
 
         categoriasContainer.innerHTML = html;
+
+        renderPaginacion(
+            document.getElementById('paginacion-catalogo-categorias'),
+            _paginaCatActual,
+            _categoriasMostradas.length,
+            CATEGORIAS_POR_PAGINA,
+            (p) => { _paginaCatActual = p; renderizarCategorias(_categoriasMostradas); }
+        );
     }
 
     // Cargar categorías

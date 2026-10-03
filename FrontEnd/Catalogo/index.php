@@ -39,15 +39,7 @@
         <!-- Aquí se generarán dinámicamente las categorías -->
     </div>
 
-    <div class="paginacion">
-        <button>&lt;</button>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>...</span>
-        <span>5</span>
-        <button>&gt;</button>
-    </div>
+    <div class="paginacion" id="paginacion-catalogo-categorias"></div>
 </section>
 
 
@@ -68,15 +60,7 @@
             <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
 
-        <div class="paginacion">
-            <button>&lt;</button>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>...</span>
-            <span>5</span>
-            <button>&gt;</button>
-        </div>
+        <div class="paginacion" id="paginacion-catalogo-productos"></div>
     </section>
 
     <!-- Columna derecha: Resumen del pedido -->

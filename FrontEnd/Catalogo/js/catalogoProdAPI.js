@@ -4,6 +4,10 @@ function initCatalogoAPI() {
     const apiUrl  = `${window.API_BASE}/meta.php?entity=producto`;
     const apiUrlC = `${window.API_BASE}/meta.php?entity=combo`;
 
+    let _paginaProdActual = 1;
+    let _productosMostrados = [];
+    const PRODUCTOS_POR_PAGINA = 10;
+
     //tarjetas de productos en el catálogo
     function renderizarCatalogo(registros) {
         const catalogoContainer = document.getElementById('catalogo-container');
@@ -18,12 +22,21 @@ function initCatalogoAPI() {
                     No se encontraron productos
                 </div>
             `;
+            renderPaginacion(document.getElementById('paginacion-catalogo-productos'), 1, 0, PRODUCTOS_POR_PAGINA, () => {});
             return;
         }
 
+        _productosMostrados = registros;
+
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / PRODUCTOS_POR_PAGINA));
+        if (_paginaProdActual > totalPaginas) _paginaProdActual = totalPaginas;
+
+        const inicio   = (_paginaProdActual - 1) * PRODUCTOS_POR_PAGINA;
+        const visibles = registros.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
+
         let html = '';
 
-        registros.forEach(item => {
+        visibles.forEach(item => {
             const urlRelativa = (item.url_imagen && item.url_imagen.trim() !== '')
                 ? item.url_imagen
                 : 'uploads/default/default-image.jpg';
@@ -47,6 +60,14 @@ function initCatalogoAPI() {
         });
 
         catalogoContainer.innerHTML = html;
+
+        renderPaginacion(
+            document.getElementById('paginacion-catalogo-productos'),
+            _paginaProdActual,
+            _productosMostrados.length,
+            PRODUCTOS_POR_PAGINA,
+            (p) => { _paginaProdActual = p; renderizarCatalogo(_productosMostrados); }
+        );
     }
 
     // Cargar catálogo

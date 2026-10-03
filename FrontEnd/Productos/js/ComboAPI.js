@@ -13,6 +13,9 @@ let _comboState = {
     render:               null
 };
 let _comboDocReady = false;
+let _paginaComboActual = 1;
+let _combosMostrados   = [];
+const COMBOS_POR_PAGINA = 6;
 
 function initCombo() {
 
@@ -60,12 +63,21 @@ function initCombo() {
 
         if (!registros || registros.length === 0) {
             contenedor.innerHTML = `<p class="no-results" style="padding:20px; text-align:center; width:100%;">No se encontraron combos.</p>`;
+            renderPaginacion(document.getElementById('paginacion-combos'), 1, 0, COMBOS_POR_PAGINA, () => {});
             return;
         }
 
+        _combosMostrados = registros;
+
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / COMBOS_POR_PAGINA));
+        if (_paginaComboActual > totalPaginas) _paginaComboActual = totalPaginas;
+
+        const inicio   = (_paginaComboActual - 1) * COMBOS_POR_PAGINA;
+        const visibles = registros.slice(inicio, inicio + COMBOS_POR_PAGINA);
+
         let htmlAcumulado = "";
 
-        registros.forEach(item => {
+        visibles.forEach(item => {
             const esActivo          = item.activo == 0 ? 'innactivo' : 'activo';
             const claseActivo       = item.activo == 0 ? 'inactivo' : 'activo';
             const cambiarEstadoBtn  = item.activo == 1 ? 'desactivar' : 'activar';
@@ -116,6 +128,14 @@ function initCombo() {
         });
 
         contenedor.innerHTML = htmlAcumulado;
+
+        renderPaginacion(
+            document.getElementById('paginacion-combos'),
+            _paginaComboActual,
+            _combosMostrados.length,
+            COMBOS_POR_PAGINA,
+            (p) => { _paginaComboActual = p; renderizarCombos(_combosMostrados); }
+        );
     }
 
     async function cargarAPICombo() {
@@ -151,6 +171,7 @@ function initCombo() {
     if (inputSearch) {
         inputSearch.addEventListener('input', (e) => {
             const textoBusqueda = e.target.value.toLowerCase().trim();
+            _paginaComboActual = 1;
             const combosFiltrados = _comboState.todosLosCombos.filter(item => {
                 const nombreCombo = item.nombre ? item.nombre.toLowerCase() : "";
                 return nombreCombo.includes(textoBusqueda);

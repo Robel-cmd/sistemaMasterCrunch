@@ -4,6 +4,9 @@ let idCategoriaActual        = null;
 let accionActual             = null;
 let idCategoriaEliminar      = null;
 let _categoriasDocListenersReady = false;
+let _paginaCatActual         = 1;
+let _categoriasMostradas     = [];
+const CATEGORIAS_POR_PAGINA  = 6;
 
 function initCategorias() {
 
@@ -21,11 +24,20 @@ function initCategorias() {
 
         if (!registros || registros.length === 0) {
             contenedor.innerHTML = `<div style="text-align:center;width:100%;padding:20px;" class="noseencontro">No se encontraron categorías</div>`;
+            renderPaginacion(document.getElementById('paginacion-categorias'), 1, 0, CATEGORIAS_POR_PAGINA, () => {});
             return;
         }
 
+        _categoriasMostradas = registros;
+
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / CATEGORIAS_POR_PAGINA));
+        if (_paginaCatActual > totalPaginas) _paginaCatActual = totalPaginas;
+
+        const inicio    = (_paginaCatActual - 1) * CATEGORIAS_POR_PAGINA;
+        const visibles  = registros.slice(inicio, inicio + CATEGORIAS_POR_PAGINA);
+
         let html = "";
-        registros.forEach(item => {
+        visibles.forEach(item => {
             const esactivo          = item.activo == 0 ? 'innactivo' : 'activo';
             const urlDefault        = (item.imagen && item.imagen.trim() !== "")
                 ? item.imagen
@@ -55,6 +67,14 @@ function initCategorias() {
             `;
         });
         contenedor.innerHTML = html;
+
+        renderPaginacion(
+            document.getElementById('paginacion-categorias'),
+            _paginaCatActual,
+            registros.length,
+            CATEGORIAS_POR_PAGINA,
+            (p) => { _paginaCatActual = p; renderizarCategorias(_categoriasMostradas); }
+        );
     }
 
     function renderizarSelectsCategorias(registros) {
@@ -417,6 +437,7 @@ function initCategorias() {
     if (searchInputCat) {
         searchInputCat.addEventListener('input', (e) => {
             const texto = e.target.value.toLowerCase().trim();
+            _paginaCatActual = 1;
             const filtradas = listaCategoriasGlobal.filter(cat => {
                 const nombre = (cat.nombre || "").toLowerCase();
                 return nombre.includes(texto);

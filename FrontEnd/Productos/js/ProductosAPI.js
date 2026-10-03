@@ -1,6 +1,7 @@
 
 let _prodState = {
     listaProductos:   [],
+    listaMostrada:    [],
     objetoCategorias: {},
     idEliminar:       null,
     idEditar:         null,
@@ -9,6 +10,8 @@ let _prodState = {
     render:           null  
 };
 let _prodDocReady = false;
+let _paginaProdActual = 1;
+const PRODUCTOS_POR_PAGINA = 10;
 
 function initProductos() {
 
@@ -34,9 +37,19 @@ function initProductos() {
 
         if (!registros || registros.length === 0) {
             contenedorTabla.innerHTML = `<tr><td colspan="8" style="text-align:center;">No se encontraron productos</td></tr>`;
+            renderPaginacion(document.getElementById('paginacion-productos'), 1, 0, PRODUCTOS_POR_PAGINA, () => {});
             return;
         }
 
+        _prodState.listaMostrada = registros;
+
+        const totalPaginas = Math.max(1, Math.ceil(registros.length / PRODUCTOS_POR_PAGINA));
+        if (_paginaProdActual > totalPaginas) _paginaProdActual = totalPaginas;
+
+        const inicio   = (_paginaProdActual - 1) * PRODUCTOS_POR_PAGINA;
+        const visibles = registros.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
+
+        registros = visibles;
         registros.forEach(item => {
             const disponibilidad  = item.disponibilidad == 0 ? 'Agotado' : 'Disponible';
             const esExtraBool     = String(item.es_extra) === "1";
@@ -77,6 +90,14 @@ function initProductos() {
             `;
             contenedorTabla.appendChild(fila);
         });
+
+        renderPaginacion(
+            document.getElementById('paginacion-productos'),
+            _paginaProdActual,
+            _prodState.listaMostrada.length,
+            PRODUCTOS_POR_PAGINA,
+            (p) => { _paginaProdActual = p; renderizarTabla(_prodState.listaMostrada); }
+        );
     }
 
     async function cargarAPIProducto() {
@@ -470,6 +491,7 @@ function initProductos() {
     if (searchInputProd) {
         searchInputProd.addEventListener('input', (e) => {
             const texto = e.target.value.toLowerCase().trim();
+            _paginaProdActual = 1;
 
             const filtrados = _prodState.listaProductos.filter(prod => {
                 const codigo          = (prod.codigo_interno || "").toLowerCase();
